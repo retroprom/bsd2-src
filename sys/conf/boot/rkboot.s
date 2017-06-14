@@ -1,5 +1,5 @@
 /*
- *	SCCS id	@(#)rmboot.s	2.0 (2.11BSD)	4/13/91
+ *	SCCS id	@(#)rkboot.s	1.0 (2.11BSD)	12/26/2008
  */
 #include "localopts.h"
 
@@ -50,35 +50,28 @@ hardboot:
 /  Otherwise, use a BOOT opcode, if available;
 /  if necessary, read in block 0 to location 0 "by hand".
 
-/ rm02/3/5 rp06 bootstrap - salkind@nyu
+/ Bootstrap for rk05 drive - wfjm
 
-WC	= -256.
-READ	= 70
-GO	= 1
-PRESET	= 20
-FMT22	= 10000
-DRIVE	= 0
+WC = -256.
 
-rmcs1	= 0
-rmda	= rmcs1+6
-rmcs2	= rmcs1+10
-rmds	= rmcs1+12
-rmof	= rmcs1+32
-rmca	= rmcs1+34
+rkcs =  4	/ offset from base csr: control & status
+rkda = 12	/ desired disk address
 
-	mov	_bootcsr,r1
-	mov	ENDCORE-BOOTDEV,rmcs2(r1)
-	mov	$PRESET+GO,rmcs1(r1)
-	mov	$FMT22,rmof(r1)
-	clr	rmca(r1)
-	add	$rmcs2,r1
-	mov	ENDCORE-BOOTDEV,(r1)
-	clr	-(r1)
-	clr	-(r1)
-	mov	$WC,-(r1)
-	mov	$READ+GO,-(r1)
-1:
-	tstb	(r1)
-	bge	1b
+/ RK05 constants.
+iocom = 005	/ read + go
+
+/ initialize rk
+
+	mov	_bootcsr,r1	/ bootcsr points to rkcs
+	add	$rkda-rkcs,r1	/ r1 -> rkda
+	mov	ENDCORE-BOOTDEV,r2	/ drive number
+	ash	$13,r2		/ drsel is in bits 15:13
+	mov	r2,(r1)		/ setup rkda (disk address)
+	clr	-(r1)		/ clear rkba (memory address)
+	mov	$WC,-(r1)	/ setup rkwc (transfer length)
+	mov	$iocom,-(r1)	/ issue read+go
+
+1:	tstb	(r1)
+	bge	1b		/ wait for iocom to complete
 	mov	ENDCORE-BOOTDEV,r0
 	clr	pc
