@@ -1,0 +1,99 @@
+60,63c60,63
+< MPBINDIR   = $(MPPATH)/bin
+< MPLIBDIR   = $(MPPATH)/lib
+< MPMANDIR   = $(MPPATH)/man/man$(MPMANSECT)
+< MPMANSECT  = l
+---
+> MPBINDIR   = $(MPPATH)
+> MPLIBDIR   = $(MPPATH)/lib/mp
+> MPMANDIR   = $(MPPATH)/man/cat$(MPMANSECT)
+> MPMANSECT  = 1
+74,75c74
+< LDFLAGS  =
+< 
+---
+> LDFLAGS  = -z
+79,80d77
+< .KEEPSTATE:
+< 
+91c88
+< 	  mp.el mp.pro.old mp.pro.l.old Data
+---
+> 	  mp.el Data
+96c93
+< SFILES4  = TODO mailp mp.el mp.pro.old mp.pro.l.old $(MPAGES)
+---
+> SFILES4  = TODO mailp mp.el $(MPAGES)
+129a127
+> 	-mkdir -p ${MPLIBDIR}
+131,133c129
+< 	   -cp mp $(MPBINDIR)
+< 	   -chmod 751 $(MPBINDIR)/mp
+< 	   -strip $(MPBINDIR)/mp
+---
+> 	install -m 751 -o bin -g bin -s mp $(MPBINDIR)
+135,136c131,132
+< 	   -cp mp.1 $(MPMANDIR)/mp.$(MPMANSECT)
+< 	   -chmod 644 $(MPMANDIR)/mp.$(MPMANSECT)
+---
+> 	nroff -h -man mp.1 > mp.0
+> 	install -m 644 -o bin -g bin mp.0 $(MPMANDIR)
+138,139c134,135
+< 	   -cp mailp.1 $(MPMANDIR)/mailp.$(MPMANSECT)
+< 	   -chmod 644 $(MPMANDIR)/mailp.$(MPMANSECT)
+---
+> 	nroff -h -man mailp.1 > mailp.0
+> 	install -m 644 -o bin -g bin mailp.0 $(MPMANDIR)
+141,142c137
+< 	   -cp mp.common.ps $(MPLIBDIR)
+< 	   -chmod 644 $(MPLIBDIR)/mp.common.ps
+---
+> 	install -c -m 644 -o bin -g bin mp.common.ps $(MPLIBDIR)
+144,145c139
+< 	   -cp mp.pro.ps $(MPLIBDIR)
+< 	   -chmod 644 $(MPLIBDIR)/mp.pro.ps
+---
+> 	install -c -m 644 -o bin -g bin mp.pro.ps $(MPLIBDIR)
+147,148c141
+< 	   -cp mp.pro.l.ps $(MPLIBDIR)
+< 	   -chmod 644 $(MPLIBDIR)/mp.pro.l.ps
+---
+> 	install -c -m 644 -o bin -g bin mp.pro.l.ps $(MPLIBDIR)
+150,151c143
+< 	   -cp mp.pro.alt.ps $(MPLIBDIR)
+< 	   -chmod 644 $(MPLIBDIR)/mp.pro.alt.ps
+---
+> 	install -c -m 644 -o bin -g bin mp.pro.alt.ps $(MPLIBDIR)
+153,154c145
+< 	   -cp mp.pro.altl.ps $(MPLIBDIR)
+< 	   -chmod 644 $(MPLIBDIR)/mp.pro.altl.ps
+---
+> 	install -c -m 644 -o bin -g bin mp.pro.altl.ps $(MPLIBDIR)
+156,157c147
+< 	   -cp mp.pro.ff.ps $(MPLIBDIR)
+< 	   -chmod 644 $(MPLIBDIR)/mp.pro.ff.ps
+---
+> 	install -c -m 644 -o bin -g bin mp.pro.ff.ps $(MPLIBDIR)
+159,160c149
+< 	   -cp mp.pro.fp.ps $(MPLIBDIR)
+< 	   -chmod 644 $(MPLIBDIR)/mp.pro.fp.ps
+---
+> 	install -c -m 644 -o bin -g bin mp.pro.fp.ps $(MPLIBDIR)
+162,163c151
+< 	   -cp mp.pro.tm.ps $(MPLIBDIR)
+< 	   -chmod 644 $(MPLIBDIR)/mp.pro.tm.ps
+---
+> 	install -c -m 644 -o bin -g bin mp.pro.tm.ps $(MPLIBDIR)
+165,166c153
+< 	   -cp mp.pro.ts.ps $(MPLIBDIR)
+< 	   -chmod 644 $(MPLIBDIR)/mp.pro.ts.ps
+---
+> 	install -c -m 644 -o bin -g bin mp.pro.ts.ps $(MPLIBDIR)
+179c166
+< 		ln -s $(MPBINDIR)/mailp $(MPBINDIR)/$$name; \
+---
+> 		ln $(MPBINDIR)/mailp $(MPBINDIR)/$$name; \
+184c171
+< 	rm -rf mp.part? Part? *.Z *.uu mp.1 mp *.o core
+---
+> 	rm -rf mp.part? Part? *.Z *.uu mp.1 mailp.1 mp *.o core
