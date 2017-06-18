@@ -14,12 +14,12 @@
  * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	@(#)pwd.h	4.3 (Berkeley) 2/22/89
+ *	@(#)pwd.h	4.3.1 (2.11BSD) 1996/11/16
  */
 
 #define	_PATH_PASSWD		"/etc/passwd"
 #define	_PATH_MASTERPASSWD	"/etc/master.passwd"
-#define	_PATH_MKPASSWD		"/etc/mkpasswd"
+#define	_PATH_MKPASSWD		"/sbin/mkpasswd"
 #define	_PATH_PTMP		"/etc/ptmp"
 
 #define	_PW_KEYBYNAME		'0'
