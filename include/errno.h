@@ -3,12 +3,12 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)errno.h	7.1 (Berkeley) 6/4/86
+ *	@(#)errno.h	7.1.3 (2.11BSD) 1999/9/6
  */
 
-/*
- * Error codes
- */
+#ifndef	KERNEL
+extern	int	errno;			/* global error number */
+#endif
 
 #define	EPERM		1		/* Not owner */
 #define	ENOENT		2		/* No such file or directory */
@@ -96,3 +96,26 @@
 #define	EPROCLIM	67		/* Too many processes */
 #define	EUSERS		68		/* Too many users */
 #define	EDQUOT		69		/* Disc quota exceeded */
+
+/* Network File System */
+#define	ESTALE		70		/* Stale NFS file handle */
+#define	EREMOTE		71		/* Too many levels of remote in path */
+#define	EBADRPC		72		/* RPC struct is bad */
+#define	ERPCMISMATCH	73		/* RPC version wrong */
+#define	EPROGUNAVAIL	74		/* RPC prog. not avail */
+#define	EPROGMISMATCH	75		/* Program version wrong */
+#define	EPROCUNAVAIL	76		/* Bad procedure for program */
+
+#define	ENOLCK		77		/* No locks available */
+#define	ENOSYS		78		/* Function not implemented */
+
+#define	EFTYPE		79		/* Inappropriate file type or format */
+#define	EAUTH		80		/* Authentication error */
+#define	ENEEDAUTH	81		/* Need authenticator */
+#define	ELAST		81		/* Must be equal largest errno */
+
+#ifdef	KERNEL
+/* pseudo-errors returned inside kernel to modify return back to user mode */
+#define	ERESTART	-1		/* restart syscall */
+#define	EJUSTRETURN	-2		/* don't modify regs, just return */
+#endif
