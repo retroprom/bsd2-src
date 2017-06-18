@@ -3,8 +3,10 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)time.h	1.2 (Berkeley) 3/4/87
+ *	@(#)time.h	1.3 (2.11BSD) 96/7/10
  */
+
+#include	<sys/types.h>		/* for time_t */
 
 /*
  * Structure returned by gmtime and localtime calls (see ctime(3)).
@@ -25,3 +27,4 @@ struct tm {
 
 extern	struct tm *gmtime(), *localtime();
 extern	char *asctime(), *ctime();
+extern	time_t	time();
