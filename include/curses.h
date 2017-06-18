@@ -3,7 +3,7 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)curses.h	5.1 (Berkeley) 6/7/85
+ *	@(#)curses.h	5.1.1 (2.11BSD GTE) 12/9/94
  */
 
 # ifndef WINDOW
@@ -52,7 +52,7 @@ extern char	PC;
  * From the tty modes...
  */
 
-extern bool	GT, NONL, UPPERCASE, normtty, _pfast;
+extern bool	GT, NONL, normtty, _pfast;
 
 struct _win_st {
 	short		_cury, _curx;
