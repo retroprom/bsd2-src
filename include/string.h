@@ -3,27 +3,22 @@
  * All rights reserved.  The Berkeley software License Agreement
  * specifies the terms and conditions for redistribution.
  *
- *	@(#)string.h	5.1 (Berkeley) 85/08/05
+ *	@(#)string.h	5.1.3 (2.11BSD) 1996/3/20
  */
 
-#include <strings.h>
+#include <sys/types.h>
 
-/*
- * these next few are obsolete trash
- */
+#ifndef	NULL
+#define	NULL	0
+#endif
 
-extern char *strcpyn();
-extern char *strcatn();
-extern int strcmpn();
+extern	char	*strcat(), *strncat(), *strcpy(), *strncpy(), *index();
+extern	char	*rindex(), *strstr(), *syserrlst();
+extern	int	strcmp(), strncmp(), strcasecmp(), strncasecmp(), strlen();
+extern	int	memcmp();
 
-/*
- * and the rest are Sys5 functions supported just so
- * Sys5 progs will compile easily.
- */
+extern	char	*memccpy(), *memchr(), *memcpy(), *memset(), *strchr();
+extern	char	*strdup(), *strpbrk(), *strrchr(), *strsep(), *strtok();
+extern	size_t	strcspn(), strspn();
 
-extern char *strchr();
-extern char *strrchr();
-extern char *strpbrk();
-extern int strspn();
-extern int strcspn();
-extern char *strtok();
+extern	char	*strerror();
