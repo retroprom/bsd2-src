@@ -19,15 +19,15 @@ SEPFLAG= -i
 all:	${ALL}
 
 snake:	$(OBJS)
-	cc ${SEPFLAG} $(OBJS) -o snake $(LIBS)
+	${CC} ${SEPFLAG} $(OBJS) -o snake $(LIBS)
 
 snake.o move.o:snake.h
 
 snscore: snscore.c
-	cc ${SEPFLAG} $(CFLAGS) snscore.c -o snscore
+	${CC} ${SEPFLAG} $(CFLAGS) snscore.c -o snscore
 
 busy:	busy.c
-	cc ${SEPFLAG} $(CFLAGS) busy.c -o busy
+	${CC} ${SEPFLAG} $(CFLAGS) busy.c -o busy
 
 install: all
 	install -s -m 4755 -o ${USER} snake ${BIN}/snake

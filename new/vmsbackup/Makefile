@@ -12,7 +12,7 @@ MANSRC=	vmsbackup.1
 
 #
 vmsbackup: vmsbackup.o match.o
-	cc $(LFLAGS) -o vmsbackup vmsbackup.o match.o $(LIBS)
+	${CC} $(LFLAGS) -o vmsbackup vmsbackup.o match.o $(LIBS)
 
 install: vmsbackup $(MAN)
 	install -m $(MODE) -o $(OWNER) -s vmsbackup ${DESTDIR}$(BINDIR)	

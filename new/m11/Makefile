@@ -33,7 +33,7 @@ m11: ${OBJS}
 	mv exec.out m11
 
 macxrf: macxrf.c
-	cc ${SEPFLAG} -O -w -o macxrf macxrf.c
+	${CC} ${SEPFLAG} -O -w -o macxrf macxrf.c
 
 install: all m11.0
 	install -s m11 ${DESTDIR}/usr/new/m11

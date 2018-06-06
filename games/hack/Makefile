@@ -112,8 +112,8 @@ $(GAME): crypt $(HOBJ)
 # Crypt is really crufty and slow, but the goal was to get something out the
 # door ...
 .c.o:
-	cc -E $*.c | ./crypt | xstr -c -
-	cc -c ${CFLAGS} x.c
+	${CC} -E $*.c | ./crypt | xstr -c -
+	${CC} -c ${CFLAGS} x.c
 	mv x.o $*.o
 
 rnd.o:		rnd.c
@@ -121,18 +121,18 @@ alloc.o:	alloc.c
 
 strings.o:	strings
 	xstr
-	cc -c ${CFLAGS} xs.c
+	${CC} -c ${CFLAGS} xs.c
 	mv xs.o strings.o
 	rm xs.c
 
 crypt:	crypt.c
-	cc -o crypt crypt.c
+	${CC} -o crypt crypt.c
 
 clean:
 	rm -f *.o x.c xs.c strings crypt makedefs
 
 makedefs:	makedefs.c
-	cc -o makedefs makedefs.c
+	${CC} -o makedefs makedefs.c
 
 hack.onames.h:	makedefs def.objects.h
 	./makedefs > hack.onames.h
@@ -212,47 +212,47 @@ install: $(GAME)
 # DO NOT DELETE THIS LINE
 
 hack.Decl.o:  hack.h def.mkroom.h
-	cc -E hack.Decl.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
-	cc -c ${CFLAGS} x.c
+	${CC} -E hack.Decl.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
+	${CC} -c ${CFLAGS} x.c
 	mv x.o hack.Decl.o
 hack.apply.o:  hack.h def.edog.h def.mkroom.h
 hack.bones.o:  hack.h
-	cc -E hack.bones.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
-	cc -c ${CFLAGS} x.c
+	${CC} -E hack.bones.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
+	${CC} -c ${CFLAGS} x.c
 	mv x.o hack.bones.o
 hack.o:  hack.h
 hack.cmd.o:  hack.h def.func_tab.h
-	cc -E hack.cmd.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
-	cc -c ${CFLAGS} x.c
+	${CC} -E hack.cmd.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
+	${CC} -c ${CFLAGS} x.c
 	mv x.o hack.cmd.o
 hack.do.o:  hack.h
 hack.do_name.o:  hack.h
 hack.do_wear.o:  hack.h
 hack.dog.o:  hack.h hack.mfndpos.h def.edog.h def.mkroom.h
 hack.eat.o:  hack.h
-	cc -E hack.eat.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
-	cc -c ${CFLAGS} x.c
+	${CC} -E hack.eat.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
+	${CC} -c ${CFLAGS} x.c
 	mv x.o hack.eat.o
 hack.end.o:  hack.h
 hack.engrave.o:  hack.h
 hack.fight.o:  hack.h
-	cc -E hack.fight.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
-	cc -c ${CFLAGS} x.c
+	${CC} -E hack.fight.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
+	${CC} -c ${CFLAGS} x.c
 	mv x.o hack.fight.o
 hack.invent.o:  hack.h def.wseg.h
 hack.ioctl.o:  config.h
 hack.lev.o:  hack.h def.mkroom.h def.wseg.h
 hack.main.o:  hack.h
-	cc -E hack.main.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
-	cc -c ${CFLAGS} x.c
+	${CC} -E hack.main.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
+	${CC} -c ${CFLAGS} x.c
 	mv x.o hack.main.o
 hack.makemon.o:  hack.h
 hack.mhitu.o:  hack.h
 hack.mklev.o:  hack.h def.mkroom.h
 hack.mkmaze.o:  hack.h def.mkroom.h
 hack.mkobj.o:  hack.h
-	cc -E hack.mkobj.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
-	cc -c ${CFLAGS} x.c
+	${CC} -E hack.mkobj.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
+	${CC} -c ${CFLAGS} x.c
 	mv x.o hack.mkobj.o
 hack.mkshop.o:  hack.h def.mkroom.h def.eshk.h
 hack.mon.o:  hack.h hack.mfndpos.h
@@ -265,8 +265,8 @@ hack.potion.o:  hack.h
 hack.pri.o:  hack.h def.wseg.h
 hack.read.o:  hack.h
 hack.rip.o:  hack.h
-	cc -E hack.rip.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
-	cc -c ${CFLAGS} x.c
+	${CC} -E hack.rip.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
+	${CC} -c ${CFLAGS} x.c
 	mv x.o hack.rip.o
 hack.rumors.o:  config.h
 hack.save.o:  hack.h
@@ -279,8 +279,8 @@ hack.timeout.o:  hack.h
 hack.topl.o:  hack.h
 hack.track.o:  hack.h
 hack.trap.o:  hack.h def.mkroom.h
-	cc -E hack.trap.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
-	cc -c ${CFLAGS} x.c
+	${CC} -E hack.trap.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
+	${CC} -c ${CFLAGS} x.c
 	mv x.o hack.trap.o
 hack.tty.o:  hack.h
 hack.unix.o:  hack.h def.mkroom.h
@@ -288,15 +288,15 @@ hack.u_init.o:  hack.h
 hack.vault.o:  hack.h def.mkroom.h
 hack.wield.o:  hack.h
 hack.wizard.o:  hack.h
-	cc -E hack.wizard.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
-	cc -c ${CFLAGS} x.c
+	${CC} -E hack.wizard.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
+	${CC} -c ${CFLAGS} x.c
 	mv x.o hack.wizard.o
 hack.worm.o:  hack.h def.wseg.h
 hack.worn.o:  hack.h
 hack.zap.o:  hack.h
 hack.version.o:  date.h
-	cc -E hack.version.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
-	cc -c ${CFLAGS} x.c
+	${CC} -E hack.version.c | ./crypt | sed 's/^# \([0-9]*\)/#line \1/' > x.c
+	${CC} -c ${CFLAGS} x.c
 	mv x.o hack.version.o
 hack.h:  config.h def.objclass.h def.monst.h def.gold.h def.trap.h def.obj.h def.flag.h def.rm.h def.permonst.h hack.onames.h
 			touch hack.h

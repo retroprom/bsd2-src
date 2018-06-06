@@ -50,7 +50,7 @@ ROOT=	root
 OBJMODE=755
 
 .c.o:
-	cc -S $(CFLAGS) $*.c
+	${CC} -S $(CFLAGS) $*.c
 	sed -f $(ASMSED) $*.s >_xx.s
 	as -V - -o $*.o _xx.s
 	rm -f $*.s _xx.s
@@ -58,13 +58,13 @@ OBJMODE=755
 all: $(ALL)
 
 mconnect: mconnect.o
-	cc $(SEPFLAG) $(COPTS) -o $@ mconnect.o
+	${CC} $(SEPFLAG) $(COPTS) -o $@ mconnect.o
 
 mailstats: mailstats.o
-	cc $(SEPFLAG) $(COPTS) -o $@ mailstats.o
+	${CC} $(SEPFLAG) $(COPTS) -o $@ mailstats.o
 
 praliases: praliases.o
-	cc $(SEPFLAG) $(COPTS) -o $@ praliases.o
+	${CC} $(SEPFLAG) $(COPTS) -o $@ praliases.o
 
 sources: $(SRCS)
 

@@ -43,7 +43,7 @@ MANDIR		=	${DESTDIR}/usr/man/cat8
 all: ${TARGET} ${CATPAGE}
 
 ${TARGET}: ${OBJS}
-	cc  -i ${OBJS} -o ${TARGET}
+	${CC}  -i ${OBJS} -o ${TARGET}
 
 tar: ${SRCS} ${DOCS} ${MAKEFILE}
 	rm -f ${TAR} *.Z*

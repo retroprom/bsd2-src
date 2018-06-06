@@ -5,7 +5,7 @@ SEPFLAG= -i
 DESTDIR=
 
 diff3: diff3.o
-	cc ${SEPFLAG} -o diff3 diff3.o
+	${CC} ${SEPFLAG} -o diff3 diff3.o
 
 install: diff3
 	install -s -m 755 diff3 $(DESTDIR)/usr/libexec

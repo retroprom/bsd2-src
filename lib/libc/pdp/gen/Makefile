@@ -26,10 +26,10 @@ TAGSFILE=tags
 	mv a.out $*.o
 
 .c.o:
-	cc -p -c ${CFLAGS} $*.c
+	${CC} -p -c ${CFLAGS} $*.c
 	-ld -X -r $*.o
 	mv a.out profiled/$*.o
-	cc -c ${CFLAGS} $*.c
+	${CC} -c ${CFLAGS} $*.c
 	-ld -x -r $*.o
 	mv a.out $*.o
 

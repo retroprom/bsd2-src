@@ -8,7 +8,7 @@ MANDIR=/usr/man/cat
 all: disklabel disklabel.5.0 disklabel.0
 
 disklabel: disklabel.o
-	cc ${CFLAGS} ${SEPFLAG} -o $@ $@.o -lutil
+	${CC} ${CFLAGS} ${SEPFLAG} -o $@ $@.o -lutil
 
 install: all
 	install -s -c -o bin -g operator -m 2550 disklabel \

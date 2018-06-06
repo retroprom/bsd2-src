@@ -18,7 +18,7 @@ OBJS=	Execute.o GetPatFile.o Global.o MakeDesc.o MakeSkip.o MatchFound.o \
 	/usr/man/manroff $*.1 > $*.0
 
 bm: ${OBJS} bm.0
-	cc -o $@ ${SEPFLAG} ${OBJS}
+	${CC} -o $@ ${SEPFLAG} ${OBJS}
 
 install: bm bm.0
 	install -s bm ${DESTDIR}/usr/new/bm

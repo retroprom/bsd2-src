@@ -37,10 +37,10 @@ clean:
 	rm -f *.o y.tab.h beauty.c structure beautify
 
 structure: main.o $(0FILES.o) $(1FILES.o) $(2FILES.o) $(3FILES.o) $(4FILES.o)
-	cc ${SEPFLAG} -o structure main.o 0.*.o 1.*.o 2.*.o 3.*.o 4.*.o
+	${CC} ${SEPFLAG} -o structure main.o 0.*.o 1.*.o 2.*.o 3.*.o 4.*.o
 
 beautify:	beauty.o tree.o lextab.o bdef.o
-	cc ${SEPFLAG} -O beauty.o tree.o lextab.o bdef.o -o beautify -lln
+	${CC} ${SEPFLAG} -O beauty.o tree.o lextab.o bdef.o -o beautify -lln
 
 lint:
 	lint $(0FILES.c) $(1FILES.c) $(2FILES.c) $(3FILES.c) $(4FILES.c) main.c

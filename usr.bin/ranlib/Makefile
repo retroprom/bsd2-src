@@ -12,7 +12,7 @@ ranlib.5.0: ranlib.5.5
 	/usr/man/manroff ranlib.5.5 > ranlib.5.0
 
 ranlib: ${OBJS}
-	cc -z -o ranlib ${OBJS}
+	${CC} -z -o ranlib ${OBJS}
 
 install:
 	install -c -o bin -g bin -m 444 ranlib.5.0 \

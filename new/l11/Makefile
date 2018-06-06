@@ -8,10 +8,10 @@ SRCS=	in.c link.c pass2.c sup.c
 OBJS=	in.o link.o pass2.o sup.o 
 
 l11: ${OBJS}
-	cc -o $@ ${SEPFLAG} ${OBJS}
+	${CC} -o $@ ${SEPFLAG} ${OBJS}
 
 obint: obint.o in.o sup.o
-	cc -o $@ ${SEPFLAG} obint.o in.o sup.o
+	${CC} -o $@ ${SEPFLAG} obint.o in.o sup.o
 
 install: l11
 	install -s l11 ${DESTDIR}/usr/new/l11

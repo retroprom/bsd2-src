@@ -16,10 +16,10 @@ MOBJ=	ansitape.0 vmsprep.0
 all:	ansitape vmsprep ${MOBJ}
 
 ansitape: ansitape.o
-	cc ${SEPFLAG} -o ansitape ansitape.o
+	${CC} ${SEPFLAG} -o ansitape ansitape.o
 
 vmsprep: vmsprep.o
-	cc ${SEPFLAG} -o vmsprep vmsprep.o
+	${CC} ${SEPFLAG} -o vmsprep vmsprep.o
 
 install: vmsprep ansitape ${MOBJ}
 	install -s ansitape ${DESTDIR}/usr/new/ansitape

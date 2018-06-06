@@ -5,7 +5,7 @@ DESTDIR=
 LIB=	/lib
 
 c2: c20.o c21.o
-	cc ${CFLAGS} ${SEPFLAG} -o c2 c20.o c21.o
+	${CC} ${CFLAGS} ${SEPFLAG} -o c2 c20.o c21.o
 
 c20.o c21.o: c2.h
 

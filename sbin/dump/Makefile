@@ -26,13 +26,13 @@ ROBJS=	dumpitime.o dumprmain.o dumpoptr.o dumprtape.o dumptraverse.o \
 all: dump rdump dumpdir
 
 dump: ${OBJS}
-	cc ${CFLAGS} ${SEPFLAG} ${OBJS} -o dump
+	${CC} ${CFLAGS} ${SEPFLAG} ${OBJS} -o dump
 
 rdump: ${ROBJS}
-	cc ${CFLAGS} ${SEPFLAG} ${ROBJS} -o rdump
+	${CC} ${CFLAGS} ${SEPFLAG} ${ROBJS} -o rdump
 
 dumpdir: dumpdir.c
-	cc ${CFLAGS} ${SEPFLAG} dumpdir.c -o dumpdir
+	${CC} ${CFLAGS} ${SEPFLAG} dumpdir.c -o dumpdir
 
 install: all
 	install -s dump ${DESTDIR}/sbin/dump
@@ -50,9 +50,9 @@ ${OBJS}: dump.h
 ${ROBJS}: dump.h
 
 dumprmain.o: dumpmain.c
-	cc -c -DRDUMP ${CFLAGS} dumpmain.c
+	${CC} -c -DRDUMP ${CFLAGS} dumpmain.c
 	mv dumpmain.o dumprmain.o
 
 dumprtape.o: dumptape.c
-	cc -c -DRDUMP ${CFLAGS} dumptape.c
+	${CC} -c -DRDUMP ${CFLAGS} dumptape.c
 	mv dumptape.o dumprtape.o

@@ -51,7 +51,7 @@ ALL=	mtboot boot disklabel mkfs restor icheck maketape makesimtape toyset
 all: ${ALL}
 
 .c.o:
-	cc ${CFLAGS} -c $*.c
+	${CC} ${CFLAGS} -c $*.c
 
 .s.o:
 	/lib/cpp -P ${DEFS} $< | as -u -V -o $@
@@ -116,13 +116,13 @@ libsa.a: ${DRIVERS}
 	ranlib $@
 
 mkfs.o: ${MKFS}
-	cc ${CFLAGS} -c ${MKFS}
+	${CC} ${CFLAGS} -c ${MKFS}
 
 restor.o: ${RESTOR}
-	cc ${CFLAGS} -c ${RESTOR}
+	${CC} ${CFLAGS} -c ${RESTOR}
 
 icheck.o: ${ICHECK}
-	cc ${CFLAGS} -c ${ICHECK}
+	${CC} ${CFLAGS} -c ${ICHECK}
 
 mtboot: mtboot.o
 	strip $@.o
@@ -145,10 +145,10 @@ disklabel: srt0.o conf.o libsa.a disklabel.o displaylab.o csv.o
 	ld -X -o $@ srt0.o conf.o $@.o displaylab.o libsa.a -lkern csv.o
 
 maketape: maketape.c
-	cc -O -o $@ maketape.c
+	${CC} -O -o $@ maketape.c
 
 makesimtape: makesimtape.c
-	cc -O -o $@ makesimtape.c
+	${CC} -O -o $@ makesimtape.c
 
 toyset: toyset.o srt0.o conf.o libsa.a csv.o
 	ld -X -o $@ srt0.o conf.o $@.o libsa.a -lkern csv.o

@@ -31,18 +31,18 @@ COMMO=	byteorder.o measure.o cksum.o
 all:	${PROGRS}
 
 #cksum.o:
-#	cc ${CFLAGS} -c ${MACHINE}/$*.c
+#	${CC} ${CFLAGS} -c ${MACHINE}/$*.c
 cksum.o:
-	cc ${CFLAGS} -S ${MACHINE}/cksum.c
+	${CC} ${CFLAGS} -S ${MACHINE}/cksum.c
 	ed - < ${MACHINE}/cksum-fix > /dev/null cksum.s
 	as - -o $@ cksum.s
 	rm -f cksum.s
 
 timed: 	${OBJDS} ${COMMO}
-	cc ${SEPFLAG} ${CFLAGS} ${OBJDS} ${COMMO} ${LIBS} -o timed 
+	${CC} ${SEPFLAG} ${CFLAGS} ${OBJDS} ${COMMO} ${LIBS} -o timed 
 
 timedc: ${OBJCS} ${COMMO}
-	cc ${SEPFLAG} ${CFLAGS} ${OBJCS} ${COMMO} ${LIBS} -o timedc
+	${CC} ${SEPFLAG} ${CFLAGS} ${OBJCS} ${COMMO} ${LIBS} -o timedc
 
 install: ${PROGRS}
 	install -s timed ${DESTDIR}/usr/sbin

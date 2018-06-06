@@ -14,10 +14,10 @@ OBJS=	diff.o diffdir.o diffreg.o
 all: diff diffh
 
 diff: ${OBJS}
-	cc ${CFLAGS} -o diff ${OBJS} ${SEPFLAG} ${LDFLAGS}
+	${CC} ${CFLAGS} -o diff ${OBJS} ${SEPFLAG} ${LDFLAGS}
 
 diffh: diffh.o
-	cc -o diffh diffh.o ${SEPFLAG} ${LDFLAGS}
+	${CC} -o diffh diffh.o ${SEPFLAG} ${LDFLAGS}
 
 clean:
 	rm -f diff diffh ${OBJS} diffh.o

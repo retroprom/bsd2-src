@@ -8,7 +8,7 @@ LIBS =
 all: traceroute traceroute.0
 
 traceroute: traceroute.o
-	cc $(CFLAGS) $(INCL) -o traceroute traceroute.o $(LIBS)
+	${CC} $(CFLAGS) $(INCL) -o traceroute traceroute.o $(LIBS)
 
 install: traceroute traceroute.0
 	install -c -s -o root -g bin -m 4551 traceroute ${DESTDIR}/usr/sbin/traceroute 

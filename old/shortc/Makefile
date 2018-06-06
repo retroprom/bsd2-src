@@ -10,7 +10,7 @@ SEPFLAG=-i
 all: shortc shortc.0
 
 shortc:	shortc.o
-	cc ${CFLAGS} ${SEPFLAG} shortc.o -o shortc
+	${CC} ${CFLAGS} ${SEPFLAG} shortc.o -o shortc
 
 install: shortc shortc.0
 	install -s shortc ${DESTDIR}/usr/new/shortc

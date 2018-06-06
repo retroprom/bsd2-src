@@ -21,12 +21,12 @@ all: backgammon teachgammon backgammon.doc
 #	Backgammon program
 backgammon: $(OBJS)
 	-rm -f backgammon
-	cc ${SEPFLAG} -o backgammon $(OBJS) -ltermlib
+	${CC} ${SEPFLAG} -o backgammon $(OBJS) -ltermlib
 
 #	Backgammon rules and tutorial
 teachgammon: ${TOBJS}
 	-rm -f teachgammon
-	cc ${SEPFLAG} -o teachgammon $(TOBJS) -ltermlib
+	${CC} ${SEPFLAG} -o teachgammon $(TOBJS) -ltermlib
 
 #	Header files back.h and tutor.h
 allow.o board.o check.o extra.o fancy.o main.o move.o odds.o one.o save.o\

@@ -9,7 +9,7 @@ CFLAGS=	-O -I../ar -DNUM_VM_PAGES=20
 all:	ld ld.0
 
 ld: ${OBJS}
-	cc -i -o ld ${OBJS} -lvmf
+	${CC} -i -o ld ${OBJS} -lvmf
 
 install: all
 	install -c -s -o bin -g bin -m 755 ld ${DESTDIR}/bin/ld

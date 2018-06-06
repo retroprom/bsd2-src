@@ -10,7 +10,7 @@ SEPFLAG=-i
 all: checkobj checkobj.0
 
 checkobj: checkobj.o
-	cc ${CFLAGS} ${SEPFLAG} checkobj.o -o checkobj
+	${CC} ${CFLAGS} ${SEPFLAG} checkobj.o -o checkobj
 
 install: checkobj checkobj.0
 	install -s checkobj ${DESTDIR}/usr/new/checkobj

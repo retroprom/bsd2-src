@@ -17,7 +17,7 @@ a.out: ${OBJS}
 	${CC} ${SEPFLAG} ${LDFLAGS} ${CFLAGS} ${OBJS}
 
 save.o:	save.c	# vax C optimizer bug - infinite loop
-	cc -c save.c
+	${CC} -c save.c
 
 # always recomple okplay
 okplay.o: /tmp

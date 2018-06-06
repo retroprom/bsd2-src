@@ -19,7 +19,7 @@ DISTFILES = Makefile sysgen.c devices.h sysgen.1
 all: sysgen ${MAN}
 
 sysgen: sysgen.o devices.h
-	cc ${CFLAGS} ${SEPFLAG} -o $@ ${OBJS}
+	${CC} ${CFLAGS} ${SEPFLAG} -o $@ ${OBJS}
 
 install: sysgen sysgen.0
 	install -c -s ${PROG} ${DESTDIR}/usr/sbin/${PROG}

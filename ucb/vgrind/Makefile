@@ -15,9 +15,9 @@ OBJS=retest.o regexp.o vfontedpr.o vgrindefs.o
 all:	$(CMDS) ${OBJS}
 
 vfontedpr: vfontedpr.o vgrindefs.o regexp.o
-	cc ${SEPFLAG} ${CFLAGS} -o vfontedpr vfontedpr.o vgrindefs.o regexp.o
+	${CC} ${SEPFLAG} ${CFLAGS} -o vfontedpr vfontedpr.o vgrindefs.o regexp.o
 retest: retest.o regexp.o
-	cc ${SEPFLAG} ${CFLAGS} -o retest retest.c regexp.o
+	${CC} ${SEPFLAG} ${CFLAGS} -o retest retest.c regexp.o
 
 install: all
 	install -s vfontedpr ${DESTDIR}/usr/libexec/vfontedpr

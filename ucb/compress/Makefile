@@ -6,7 +6,7 @@ SEPFLAG= -i
 BIN=${DESTDIR}/usr/ucb
 
 compress: compress.c USERMEM
-	cc ${SEPFLAG} $(COMFLAGS) -DUSERMEM=`cat USERMEM` -o compress compress.c
+	${CC} ${SEPFLAG} $(COMFLAGS) -DUSERMEM=`cat USERMEM` -o compress compress.c
 
 # USERMEM may have to be set by hand.  It should contain the amount of
 # available user memory in bytes.  Set it to zero, for physical memory

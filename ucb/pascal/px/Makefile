@@ -37,7 +37,7 @@ px: as.o ${OBJS}
 	ld ${SEPFLAG} ${LDFLAGS} -o px /lib/crt0.o as.o ${OBJS} -lm -lc
 
 gather: gather.o
-	cc ${SEPFLAG} -o gather gather.o
+	${CC} ${SEPFLAG} -o gather gather.o
 
 as.o: E.s ${SRCS}
 	${AS} -o as.o E.s ${SRCS}

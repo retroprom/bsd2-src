@@ -8,7 +8,6 @@
 
 DEFS=
 CFLAGS=	 -O ${DEFS}
-CC=	cc
 
 SRCS=	getopt.c getsubopt.c strtol.c strtoul.c
 OBJS=	getopt.o getsubopt.o strtol.o strtoul.o

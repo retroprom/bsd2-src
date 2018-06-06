@@ -84,7 +84,7 @@ LIBES= -ltermcap		## BSD style things
 # If you want to take out -traditional, make sure that your sys/ioctl.h
 # is fixed correctly, otherwise you'll be stopped for tty input!
 #CC=	gcc -Wall 
-CC=	cc
+#CC=	cc
 #CC=	occ
 ED=	-ed
 AS=	-as

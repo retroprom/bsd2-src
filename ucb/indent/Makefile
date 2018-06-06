@@ -12,7 +12,7 @@ SRCS=	indent.c io.c lexi.c parse.c pr_comment.c args.c
 OBJS=	indent.o io.o lexi.o parse.o pr_comment.o args.o
 
 indent: ${OBJS}
-	cc ${SEPFLAG} ${CFLAGS} -o indent ${OBJS}
+	${CC} ${SEPFLAG} ${CFLAGS} -o indent ${OBJS}
 
 clean:
 	rm -f ${OBJS} indent core
@@ -24,7 +24,7 @@ install: indent
 	install -s indent ${DESTDIR}/usr/ucb/indent
 
 depend:
-	cc -M ${SRCS} | \
+	${CC} -M ${SRCS} | \
 	    awk '{ if ($$1 != prev) { if (rec != "") print rec; \
 		rec = $$0; prev = $$1; } \
 		else { if (length(rec $$2) > 78) { print rec; rec = $$0; } \

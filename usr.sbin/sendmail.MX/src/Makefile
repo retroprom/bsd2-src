@@ -44,7 +44,7 @@ PRT=	sccs prt
 	rm -f $*.s _xx.s
 
 sendmail: ${OBJS} Version.o
-	cc ${SEPFLAG} ${COPTS} -o sendmail Version.o ${BASE} \
+	${CC} ${SEPFLAG} ${COPTS} -o sendmail Version.o ${BASE} \
 		-Z ${OVLY1} -Z ${OVLY2} -Z ${OVLY3} -Y -ldbm -lstubs; \
 	size sendmail; ls -l sendmail; ${WHAT} < Version.o
 

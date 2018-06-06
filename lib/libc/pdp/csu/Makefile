@@ -34,7 +34,7 @@ mcrt0.o: moncrt0.o mon.o
 	ld -x -r -o mcrt0.o moncrt0.o mon.o
 
 mon.o: mon.c mcount.s mon.ex
-	cc ${CFLAGS} -S ${DFLAGS} mon.c
+	${CC} ${CFLAGS} -S ${DFLAGS} mon.c
 	ex - mon.s < mon.ex
 	cat mon.s mcount.s > x.s
 	/lib/cpp ${DEFS} ${DFLAGS} x.s | sed 's;^#;/;' > xx.s

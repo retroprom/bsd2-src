@@ -40,36 +40,36 @@ clean:
 	rm -f *.o style1 style2 style3 dprog
 
 style3: prtlex.o pscan.o outp.o
-	cc ${SEPFLAG} prtlex.o pscan.o outp.o -ll  -o style3
+	${CC} ${SEPFLAG} prtlex.o pscan.o outp.o -ll  -o style3
 prtlex.c: part.l
 	lex part.l
 	mv lex.yy.c prtlex.c
 prtlex.o: names.h prtlex.c conp.h style.h names.h
-	cc -c -O prtlex.c
+	${CC} -c -O prtlex.c
 pscan.o: names.h conp.h pscan.c
-	cc -c -O pscan.c
+	${CC} -c -O pscan.c
 outp.o: names.h conp.h style.h outp.c
-	cc -c -O outp.c
+	${CC} -c -O outp.c
 
 style1: wdslex.o
-	cc ${SEPFLAG} wdslex.o -ll  -o style1
+	${CC} ${SEPFLAG} wdslex.o -ll  -o style1
 wdslex.o: wdslex.c nhash.c dict.c ydict.c names.h abbrev.c
-	cc -c wdslex.c
+	${CC} -c wdslex.c
 wdslex.c: nwords.l
 	lex nwords.l
 	mv lex.yy.c wdslex.c
 
 style2: endlex.o
-	cc ${SEPFLAG} endlex.o -ll  -o style2
+	${CC} ${SEPFLAG} endlex.o -ll  -o style2
 endlex.o: names.h endlex.c ehash.c edict.c
-	cc -c endlex.c
+	${CC} -c endlex.c
 endlex.c: end.l
 	lex end.l
 	mv lex.yy.c endlex.c
 
 diction: dprog
 dprog: diction.c
-	cc ${SEPFLAG} -O $(DICT) diction.c -o dprog
+	${CC} ${SEPFLAG} -O $(DICT) diction.c -o dprog
 
 srcs:	sources
 

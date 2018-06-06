@@ -23,10 +23,10 @@ install: all
 	install -m 644 bogdict ${DESTDIR}/usr/games/lib/bogdict
 
 boggle: boggle.c
-	cc ${SEPFLAG} -o boggle ${CFLAGS} boggle.c
+	${CC} ${SEPFLAG} -o boggle ${CFLAGS} boggle.c
 
 comp: comp.c
-	cc ${SEPFLAG} -o comp ${CFLAGS} comp.c
+	${CC} ${SEPFLAG} -o comp ${CFLAGS} comp.c
 
 clean:
 	rm -f bogdict boggle comp *.o

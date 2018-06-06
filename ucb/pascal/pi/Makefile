@@ -116,7 +116,7 @@ print :
 
 yy.h:		y.tab.h
 Version.o:	Version.c
-		cc -c Version.c
+		${CC} -c Version.c
 TRdata.o:	whoami 0.h
 ato.o:		0.h whoami ato.c
 call.o:		whoami 0.h tree.h opcode.h call.c
