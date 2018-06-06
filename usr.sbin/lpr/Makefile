@@ -71,6 +71,7 @@ install: all
 	install -s -g ${SPGRP} -m 2711 lpc ${DESTDIR}/${SBINDIR}/lpc
 	install -s lptest ${DESTDIR}/${SBINDIR}/lptest
 	install -s pac ${DESTDIR}/${SBINDIR}/pac
+	mkdir -p ${DESTDIR}/${SPOOLDIR}
 	chown ${DAEMON} ${DESTDIR}/${SPOOLDIR}
 	chgrp ${SPGRP} ${DESTDIR}/${SPOOLDIR}
 	chmod 775 ${DESTDIR}/${SPOOLDIR}

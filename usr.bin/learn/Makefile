@@ -33,7 +33,7 @@ depend: FRC
 	mkdep ${CFLAGS} ${SRCS} lcount.c lrntee.c
 
 install: all
-	-mkdir ${DESTDIR}/${LLIB}
+	-mkdir -p ${DESTDIR}/${LLIB}
 	chmod 755 ${DESTDIR}/${LLIB}
 	install -c -s -m 755 learn ${DESTDIR}/usr/bin/learn
 	install -s -m 755 learn ${LLIB}/learn

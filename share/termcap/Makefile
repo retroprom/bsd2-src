@@ -15,6 +15,7 @@ termcap: reorder termcap.src
 	ex - termcap.src < reorder
 
 install: termcap tabset map3270
+	mkdir -p ${DESTDIR}/usr/share/misc
 	install -c -m 444 termcap ${DESTDIR}/usr/share/misc/termcap
 	rm -f ${DESTDIR}/etc/termcap
 	ln -s ../usr/share/misc/termcap ${DESTDIR}/etc/termcap
@@ -22,7 +23,7 @@ install: termcap tabset map3270
 
 tabset: FRC
 	rm -fr ${DESTDIR}/usr/share/tabset
-	mkdir ${DESTDIR}/usr/share/tabset
+	mkdir -p ${DESTDIR}/usr/share/tabset
 	chmod 755 ${DESTDIR}/usr/share/tabset
 	install -c -m 444 tabset/* ${DESTDIR}/usr/share/tabset
 

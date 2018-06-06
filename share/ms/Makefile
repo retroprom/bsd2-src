@@ -11,8 +11,8 @@ SRCS=	README end.awk endnote s.acc s.cov s.eqn s.ref s.tbl s.ths s.toc
 all:	${SRCS}
 
 install:${SRCS}
-	-mkdir -p /usr/share/ms
-	-chmod a+r /usr/share/ms
+	-mkdir -p ${DESTDIR}/usr/share/ms
+	-chmod a+r ${DESTDIR}/usr/share/ms
 	install -c -m 444 ${SRCS} ${DESTDIR}/usr/share/ms
 	chmod a+x ${DESTDIR}/usr/share/ms/endnote
 
