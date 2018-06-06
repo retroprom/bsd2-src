@@ -5,15 +5,15 @@ CFLAGS=-O
 uudiff: lenrem locpart printable run1 trim
 
 lenrem: lenrem.c
-	cc $(CFLAGS) lenrem.c -o lenrem
+	${CC} $(CFLAGS) lenrem.c -o lenrem
 locpart: locpart.c
-	cc $(CFLAGS) locpart.c -o locpart
+	${CC} $(CFLAGS) locpart.c -o locpart
 printable: printable.c
-	cc $(CFLAGS) printable.c -o printable
+	${CC} $(CFLAGS) printable.c -o printable
 run1: run1.c
-	cc $(CFLAGS) run1.c -o run1
+	${CC} $(CFLAGS) run1.c -o run1
 trim: trim.c
-	cc $(CFLAGS) trim.c -o trim
+	${CC} $(CFLAGS) trim.c -o trim
 
 install:
 	: stuff lives here!

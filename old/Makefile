@@ -26,7 +26,7 @@ ${SUBDIR}: /tmp
 	cd $@; make ${MFLAGS} SEPFLAG=${SEPFLAG}
 
 ${STD}:
-	cc ${CFLAGS} ${SEPFLAG} -o $@ $@.c
+	${CC} ${CFLAGS} ${SEPFLAG} -o $@ $@.c
 
 # Files listed in ${NSTD} have explicit make lines given below.
 

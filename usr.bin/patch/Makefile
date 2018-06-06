@@ -18,7 +18,7 @@ OBJS=	patch.o pch.o inp.o util.o version.o
 	/usr/man/manroff $*.man > $*.0
 
 patch: ${OBJS} patch.0
-	cc ${SEPFLAG} ${OBJS} -o patch
+	${CC} ${SEPFLAG} ${OBJS} -o patch
 
 install: patch patch.0
 	install patch ${DESTDIR}/usr/bin

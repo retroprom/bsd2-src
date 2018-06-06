@@ -11,7 +11,7 @@ all: oldassn oldassn.0
 
 oldassn: oldassn.l
 	lex oldassn.l
-	cc ${CFLAGS} ${SEPFLAG} -w -o oldassn lex.yy.c
+	${CC} ${CFLAGS} ${SEPFLAG} -w -o oldassn lex.yy.c
 	rm lex.yy.c
 
 install: oldassn oldassn.0

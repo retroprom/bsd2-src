@@ -4,7 +4,7 @@ CFLAGS=-O -w
 SEPFLAG=-i
 
 sed:	sed0.o sed1.o
-	cc ${SEPFLAG} -o sed *.o
+	${CC} ${SEPFLAG} -o sed *.o
 
 sed0.o: sed0.c sed.h
 sed1.o: sed1.c sed.h

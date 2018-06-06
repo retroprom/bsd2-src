@@ -25,7 +25,7 @@ MAN=		battlestar.0
 all:	battlestar ${MAN}
 
 battlestar: $(OBJS)
-	cc -o battlestar ${SEPFLAG} $(OBJS) $(LIBS)
+	${CC} -o battlestar ${SEPFLAG} $(OBJS) $(LIBS)
 
 $(OBJS): externs.h
 
@@ -34,24 +34,24 @@ STRINGFILE=	$(LIB)/battle_strings
 
 dayfile.o: dayfile.c mkstr
 	./mkstr - battle_strings xx dayfile.c
-	cc -c xxdayfile.c
+	${CC} -c xxdayfile.c
 	mv xxdayfile.o dayfile.o
 	rm -f xxdayfile.c
 
 nightfile.o: nightfile.c mkstr
 	./mkstr - battle_strings xx nightfile.c
-	cc -c xxnightfile.c
+	${CC} -c xxnightfile.c
 	mv xxnightfile.o nightfile.o
 	rm -f xxnightfile.c
 
 globals.o: globals.c mkstr
 	./mkstr - battle_strings xx globals.c
-	cc -c xxglobals.c
+	${CC} -c xxglobals.c
 	mv xxglobals.o globals.o
 	rm -f xxglobals.c
 
 mkstr:	mkstr.c
-	cc -O -n -o mkstr mkstr.c
+	${CC} -O -n -o mkstr mkstr.c
 
 # End of pdp-11 specific instructions
 

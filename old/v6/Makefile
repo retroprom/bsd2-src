@@ -10,7 +10,7 @@ SRCS=	v6.c
 OBJS=	v6.o
 
 all: ${OBJS} inode.h filsys.h
-	cc ${SEPFLAG} ${OBJS} -o v6
+	${CC} ${SEPFLAG} ${OBJS} -o v6
 
 install:
 	install -s v6 ${DESTDIR}/usr/old/v6

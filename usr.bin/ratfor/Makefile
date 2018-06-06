@@ -5,7 +5,7 @@ CFLAGS = -O
 SEPFLAG= -i
 
 ratfor:	r0.o r1.o r2.o rio.o rlook.o rlex.o y.tab.o
-	cc ${SEPFLAG} r*.o y.tab.o -o ratfor
+	${CC} ${SEPFLAG} r*.o y.tab.o -o ratfor
 
 r0.o:	r.h y.tab.h r0.c
 r1.o:	r.h y.tab.h r1.c

@@ -23,10 +23,10 @@ OBJS=	dumpitime.o dumpmain.o dumpoptr.o dumptape.o dumptraverse.o unctime.o
 all: dump dumpdir
 
 dump: ${OBJS}
-	cc ${CFLAGS} ${SEPFLAG} ${OBJS} -o dump
+	${CC} ${CFLAGS} ${SEPFLAG} ${OBJS} -o dump
 
 dumpdir: dumpdir.c
-	cc ${CFLAGS} ${SEPFLAG} dumpdir.c -o dumpdir
+	${CC} ${CFLAGS} ${SEPFLAG} dumpdir.c -o dumpdir
 
 install:
 	install -s dump ${DESTDIR}/sbin/dump

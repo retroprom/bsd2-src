@@ -46,7 +46,7 @@ ${SUBDIR}: FRC
 	cd $@; make ${MFLAGS} SEPFLAG=${SEPFLAG}
 
 ${STD} ${KMEM} ${SETUID}:
-	cc ${CFLAGS} ${SEPFLAG} -o $@ $@.c
+	${CC} ${CFLAGS} ${SEPFLAG} -o $@ $@.c
 
 install: ${STD} ${NSTD} ${KMEM} ${SETUID}
 	-for i in ${SUBDIR}; do \

@@ -165,7 +165,7 @@ ci.lint:
 	$(LINT) $(CISRC)
 	
 ci:	$(CIFILES)
-	cc $(LDFLAGS) -o ci $(CIFILES)
+	${CC} $(LDFLAGS) -o ci $(CIFILES)
 
 COFILES = co.o rcslex.o rcssyn.o rcsgen.o rcsedit.o rcskeys.o rcsrev.o rcsutil.o rcsfnms.o partime.o maketime.o
 
@@ -173,10 +173,10 @@ COSRC = co.c rcslex.c rcssyn.c rcsgen.c rcsedit.c rcskeys.c rcsrev.c rcsutil.c r
 co.lint:
 	$(LINT) $(COSRC)
 co:	$(COFILES)
-	cc $(LDFLAGS) -o co $(COFILES)
+	${CC} $(LDFLAGS) -o co $(COFILES)
 
 ident:	ident.o rcskeys.o
-	cc $(LDFLAGS) -o ident ident.o rcskeys.o
+	${CC} $(LDFLAGS) -o ident ident.o rcskeys.o
 
 ident.lint:
 	$(LINT) ident.c rcskeys.c
@@ -190,7 +190,7 @@ FRC:
 RLOG = rlog.o rcslex.o rcssyn.o rcsrev.o rcsutil.o partime.o maketime.o rcsfnms.o
 RLOGSRC = rlog.c rcslex.c rcssyn.c rcsrev.c rcsutil.c partime.c maketime.c rcsfnms.c
 rlog:	$(RLOG)
-	cc $(LDFLAGS) -o rlog $(RLOG)
+	${CC} $(LDFLAGS) -o rlog $(RLOG)
 
 rlog.lint:
 	$(LINT) $(RLOGSRC)
@@ -199,7 +199,7 @@ RCS = rcs.o rcslex.o rcssyn.o rcsrev.o rcsutil.o rcsgen.o rcsedit.o rcskeys.o rc
 
 RCSSRC = rcs.c rcslex.c rcssyn.c rcsrev.c rcsutil.c rcsgen.c rcsedit.c rcskeys.c rcsfnms.c
 rcs:	$(RCS)
-	cc $(LDFLAGS) -o rcs $(RCS)
+	${CC} $(LDFLAGS) -o rcs $(RCS)
 
 rcs.lint:
 	$(LINT) $(RCSSRC)
@@ -213,19 +213,19 @@ RCSDIFF = rcsdiff.o rcsutil.o rcsfnms.o rcsrev.o rcssyn.o rcslex.o
 RCSDIFFSRC = rcsdiff.c rcsutil.c rcsfnms.c rcsrev.c rcssyn.c rcslex.c
 
 rcsdiff:	$(RCSDIFF)
-	cc $(LDFLAGS) -o rcsdiff $(RCSDIFF)
+	${CC} $(LDFLAGS) -o rcsdiff $(RCSDIFF)
 
 rcsdiff.lint:
 	$(LINT) $(RCSDIFFSRC)
 RCSMERGE = rcsmerge.o rcsutil.o rcsfnms.o rcsrev.o rcssyn.o rcslex.o
 RCSMERGESRC = rcsmerge.c rcsutil.c rcsfnms.c rcsrev.c rcssyn.c rcslex.c
 rcsmerge:	$(RCSMERGE)
-	cc $(LDFLAGS) -o rcsmerge $(RCSMERGE)
+	${CC} $(LDFLAGS) -o rcsmerge $(RCSMERGE)
 rcsmerge.lint:
 	$(LINT) $(RCSMERGESRC)
 	
 snoop:	snoop.o
-	cc $(LDFLAGS) -o snoop snoop.o
+	${CC} $(LDFLAGS) -o snoop snoop.o
 snoop.lint:
 	$(LINT) snoop.c
 
@@ -233,7 +233,7 @@ SCCSTORCS= sccstorcs.o
 SCCSTORCSSRC = sccstorcs.c
 
 sccstorcs:	$(SCCSTORCS)
-	cc $(LDFLAGS) -o $@ $(SCCSTORCS)
+	${CC} $(LDFLAGS) -o $@ $(SCCSTORCS)
 
 sccstorcs.lint:
 	$(LINT) $(SCCSTORCSSRC)

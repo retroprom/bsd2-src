@@ -16,13 +16,13 @@ SRCS=	find.c bigram.c code.c
 all: ${PROG} ${LIBS}
 
 find: find.o
-	cc ${SEPFLAG} ${CFLAGS} -o find find.o
+	${CC} ${SEPFLAG} ${CFLAGS} -o find find.o
 
 bigram: bigram.o
-	cc ${SEPFLAG} ${CFLAGS} -o bigram bigram.o
+	${CC} ${SEPFLAG} ${CFLAGS} -o bigram bigram.o
 
 code: code.o
-	cc ${SEPFLAG} ${CFLAGS} -o code code.o
+	${CC} ${SEPFLAG} ${CFLAGS} -o code code.o
 
 install: ${PROG} ${LIBS}
 	install -s -m 755 ${PROG} ${DESTDIR}/usr/bin/${PROG}

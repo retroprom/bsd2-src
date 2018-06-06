@@ -13,7 +13,7 @@ FILES = e.o diacrit.o eqnbox.o font.o fromto.o funny.o glob.o integral.o \
  pile.o shift.o size.o sqrt.o text.o
 
 eqn:	$(FILES)
-	cc $(CFLAGS) ${SEPFLAG} $(FILES) -o eqn
+	${CC} $(CFLAGS) ${SEPFLAG} $(FILES) -o eqn
 
 e.c:	e.def
 

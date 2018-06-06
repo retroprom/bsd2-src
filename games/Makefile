@@ -38,7 +38,7 @@ ${SUBDIR}: FRC
 FRC:
 
 ${STD}:
-	cc ${CFLAGS} ${SEPFLAG} -o $@ $@.c
+	${CC} ${CFLAGS} ${SEPFLAG} -o $@ $@.c
 
 install: ${STD} ${NSTD}
 	-for i in ${SUBDIR}; do \
@@ -76,19 +76,19 @@ depend:
 # Files listed in ${NSTD} have explicit make lines given below.
 
 canfield:
-	cc -o canfield ${CFLAGS} ${SEPFLAG} canfield.c -lcurses -ltermcap
+	${CC} -o canfield ${CFLAGS} ${SEPFLAG} canfield.c -lcurses -ltermcap
 
 primes:
-	cc -o primes ${CFLAGS} ${SEPFLAG} primes.c -lm
+	${CC} -o primes ${CFLAGS} ${SEPFLAG} primes.c -lm
 
 rain:
-	cc -o rain ${CFLAGS} ${SEPFLAG} rain.c -lcurses -ltermcap
+	${CC} -o rain ${CFLAGS} ${SEPFLAG} rain.c -lcurses -ltermcap
 
 worm:
-	cc -o worm ${CFLAGS} ${SEPFLAG} worm.c -lcurses -ltermcap
+	${CC} -o worm ${CFLAGS} ${SEPFLAG} worm.c -lcurses -ltermcap
 
 worms:
-	cc -o worms ${CFLAGS} ${SEPFLAG} worms.c -lcurses -ltermcap
+	${CC} -o worms ${CFLAGS} ${SEPFLAG} worms.c -lcurses -ltermcap
 
 # DO NOT DELETE THIS LINE -- make depend uses it
 

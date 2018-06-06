@@ -5,7 +5,7 @@ CFLAGS=	-O -I../ar
 all:	nm
 
 nm: ${OBJS}
-	cc -z -o nm ${OBJS}
+	${CC} -z -o nm ${OBJS}
 
 install:
 	install -c -s -o bin -g bin -m 755 nm ${DESTDIR}/bin/nm

@@ -108,6 +108,6 @@ lint:
 
 str.o:	strings
 	${XSTR}
-	cc -c xs.c
+	${CC} -c xs.c
 	mv xs.o str.o
 	rm -f xs.c

@@ -26,7 +26,7 @@ main.o:		brkincr.h
 stak.o:		brkincr.h
 
 sh:
-	cc ${SEPFLAG} -o sh *.o
+	${CC} ${SEPFLAG} -o sh *.o
 
 install: all
 	install -s sh $(DESTDIR)/bin

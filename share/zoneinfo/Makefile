@@ -13,7 +13,6 @@ DESTDIR=
 CFLAGS= -O
 SEPFLAG=-i
 LINTFLAGS=	-phbaxc
-CC=		cc
 
 TZCSRCS=	zic.c scheck.c ialloc.c
 TZCOBJS=	zic.o scheck.o ialloc.o

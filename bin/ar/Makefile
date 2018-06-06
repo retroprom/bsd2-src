@@ -16,7 +16,7 @@ EXTRAOBJ= strmode.o # strftime.o ctime.o
 all: ar ar.1.0 ar.5.0
 
 ar: ${OBJS} ${EXTRAOBJ}
-	cc ${LFLAGS} -o ar ${OBJS} ${EXTRAOBJ}
+	${CC} ${LFLAGS} -o ar ${OBJS} ${EXTRAOBJ}
 
 ar.1.0: ar.1
 	nroff -man ar.1 > ar.1.0

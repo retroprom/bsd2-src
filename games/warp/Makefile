@@ -146,7 +146,7 @@ smap.6: smp.6 sm
 smap.7: smp.7 sm
 	./sm <smp.7 >smap.7
 sm: sm.c
-	cc sm.c $(SMALL) -o sm
+	${CC} sm.c $(SMALL) -o sm
 
 depend: makedepend
 	/bin/sh ./makedepend

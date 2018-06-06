@@ -10,7 +10,7 @@ SRCS=	arcv.c
 OBJS=	arcv.o
 
 all: ${OBJS}
-	cc ${SEPFLAG} ${OBJS} -o arcv
+	${CC} ${SEPFLAG} ${OBJS} -o arcv
 
 install:
 	install -s arcv ${DESTDIR}/usr/old/arcv

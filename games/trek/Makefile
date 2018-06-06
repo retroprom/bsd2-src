@@ -28,7 +28,7 @@ OBJS=	abandon.o attack.o autover.o capture.o check_out.o checkcond.o \
 HDRS=	getpar.h trek.h
 
 trek: 	${OBJS} ${HDRS}
-	cc ${SEPFLAG} ${LFLAGS} -o trek ${OBJS} -lm
+	${CC} ${SEPFLAG} ${LFLAGS} -o trek ${OBJS} -lm
 
 ${OBJS}:
 	${CC} ${CFLAGS} -c $*.c

@@ -347,13 +347,13 @@ $(DEST)/$(LIBRARY): $(SRCS) $(HDRS) $(EXTHDRS)
 #trapov_.o \
 #trapov_.c \
 #trapov_.o:	trapov_.c
-#		cc -S $(OPTIONS) trapov_.c;
+#		${CC} -S $(OPTIONS) trapov_.c;
 #		(echo "g/.set	L[0-9][0-9]*,0x0$$/s/0x0/0xf10/"; echo "x") \
 #			| ex - trapov_.s;
 #		as trapov_.s -o trapov_.o;
 #		mv trapov_.o profiled/trapov_.o
 #		rm trapov_.s
-#		cc -S $(OPTIONS) trapov_.c
+#		${CC} -S $(OPTIONS) trapov_.c
 #		(echo "g/.set	L[0-9][0-9]*,0x0$$/s/0x0/0xf10/"; echo "x") \
 #			| ex - trapov_.s
 #		as trapov_.s -o trapov_.o
@@ -371,7 +371,7 @@ $(DEST)/$(LIBRARY): $(SRCS) $(HDRS) $(EXTHDRS)
 #$(OBJS2):	Usef
 #
 #Usef:		Usef.c
-#		cc -O Usef.c -o Usef
+#		${CC} -O Usef.c -o Usef
 #
 #.c.o:
 #		$(CC) -p `Usef $*` $(CFLAGS) -c $*.c

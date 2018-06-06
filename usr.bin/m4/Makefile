@@ -10,7 +10,7 @@ OBJS=	eval.o expr.o look.o main.o misc.o
 all:	m4 tags
 
 m4:	${OBJS}
-	cc ${SEPFLAG} -o m4 ${OBJS}
+	${CC} ${SEPFLAG} -o m4 ${OBJS}
 
 install: all
 	install -s -m 755 m4 ${DESTDIR}/usr/bin/m4

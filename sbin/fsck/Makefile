@@ -32,17 +32,17 @@ HDRS=	fsck.h
 all:	${PROG}
 
 ${PROG}: ${OBJS} ${HDRS} strings.o
-	cc ${LFLAGS} -o ${PROG} ${OBJS} strings.o
+	${CC} ${LFLAGS} -o ${PROG} ${OBJS} strings.o
 
 .c.o:
-	cc -E ${CFLAGS} $*.c | ${XSTR} -c -
-	cc ${CFLAGS} -c x.c
+	${CC} -E ${CFLAGS} $*.c | ${XSTR} -c -
+	${CC} ${CFLAGS} -c x.c
 	mv -f x.o $*.o
 	rm -f x.c
 
 strings.o: strings
 	${XSTR}
-	cc -c xs.c
+	${CC} -c xs.c
 	mv -f xs.o strings.o
 	rm -f xs.c
 
@@ -56,7 +56,7 @@ lint:
 	lint ${INCPATH} ${SRCS}
 
 depend:
-	cc -M ${INCPATH} ${SRCS} | \
+	${CC} -M ${INCPATH} ${SRCS} | \
 	awk ' { if ($$1 != prev) { print rec; rec = $$0; prev = $$1; } \
 		else { if (length(rec $$2) > 78) { print rec; rec = $$0; } \
 		       else rec = rec " " $$2 } } \

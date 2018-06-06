@@ -8,7 +8,7 @@ prof:	prof.o
 	$(CC) $(SEPFLAG) -o prof prof.o $(PLOT)
 
 prof.o: prof.c
-	cc -c $(CFLAGS) $(PLOT) prof.c
+	${CC} -c $(CFLAGS) $(PLOT) prof.c
 
 install: prof
 	install -s prof $(DESTDIR)/usr/bin

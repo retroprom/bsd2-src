@@ -18,11 +18,11 @@ clean:
 	rm -f *.o spell spellin hlista hlistb hlist hstop spellout
 
 spell: spell.o
-	cc ${SEPFLAG} spell.o -o spell
+	${CC} ${SEPFLAG} spell.o -o spell
 spellin: spellin.o
-	cc ${SEPFLAG} spellin.o -o spellin
+	${CC} ${SEPFLAG} spellin.o -o spellin
 spellout: spellout.o
-	cc ${SEPFLAG} spellout.o -o spellout
+	${CC} ${SEPFLAG} spellout.o -o spellout
 
 hlist: /usr/dict/words spellin
 	spellin </usr/dict/words >hlist

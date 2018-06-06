@@ -34,7 +34,7 @@ FILES=Makefile nntpxmit.1 ${SRC} ${HFILES} shlock.c nntpsend.csh nntpsend.sh nnt
 all: nntpxmit shlock
 
 nntpxmit: ${OBJ}
-	cc -o $@ ${OBJ} ${LIBS}
+	${CC} -o $@ ${OBJ} ${LIBS}
 	@ls -las $@ ; size $@
 
 nntpxmit.o: nntpxmit.c nntpxmit.h llist.h
@@ -46,7 +46,7 @@ remote.o: remote.c nntpxmit.h get_tcp_conn.h
 llist.o: llist.c llist.h
 
 shlock: shlock.c
-	cc ${CFLAGS} -o shlock shlock.c
+	${CC} ${CFLAGS} -o shlock shlock.c
 
 install: nntpxmit shlock
 	cp nntpxmit shlock ${DESTDIR}

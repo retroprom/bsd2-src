@@ -160,7 +160,7 @@ setmaps:	setmaps.o funcdefs.c
 	$(CC) $(LDFLAGS) -o setmaps setmaps.o
 
 teachjove.o:	teachjove.c /usr/include/sys/types.h /usr/include/sys/file.h
-	cc -c $(CFLAGS) -DTEACHJOVE=\"$(TEACH-JOVE)\" teachjove.c
+	${CC} -c $(CFLAGS) -DTEACHJOVE=\"$(TEACH-JOVE)\" teachjove.c
 
 # don't optimize setmaps.c because it produces bad code in some places
 # for some reason
@@ -280,7 +280,7 @@ clean:
 # This version only works under 4.3BSD
 #depend:
 #	for i in ${SOURCES} ; do \
-#		cc -M ${CFLAGS} $$i | awk ' { if ($$1 != prev) \
+#		${CC} -M ${CFLAGS} $$i | awk ' { if ($$1 != prev) \
 #		    { if (rec != "") print rec; rec = $$0; prev = $$1; } \
 #		    else { if (length(rec $$2) > 78) { print rec; rec = $$0; } \
 #		    else rec = rec " " $$2 } } \

@@ -10,7 +10,7 @@ SEPFLAG=-i
 all: la la.0
 
 la: la.o
-	cc ${CFLAGS} ${SEPFLAG} la.o -o la
+	${CC} ${CFLAGS} ${SEPFLAG} la.o -o la
 
 install: la la.0
 	install -s la ${DESTDIR}/usr/new/la

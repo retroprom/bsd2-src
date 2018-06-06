@@ -16,7 +16,6 @@ LIB=
 CFLAGS=	-O -w
 SEPFLAG= -i
 DAT=	brd.dat monop.dat prop.dat
-CC=	cc
 XSTR=	xstr
 ED=	ed
 AS=	as

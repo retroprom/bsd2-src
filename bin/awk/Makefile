@@ -9,7 +9,7 @@ SOURCE=awk.def awk.g.y awk.lx.l b.c lib.c main.c parse.c \
 	run.c token.c tran.c
 
 awk:	$(FILES) awk.g.o
-	cc $(CFLAGS) $(SEPFLAG) awk.g.o  $(FILES)  -lm -o awk
+	${CC} $(CFLAGS) $(SEPFLAG) awk.g.o  $(FILES)  -lm -o awk
 
 y.tab.h:	awk.g.o
 
@@ -30,7 +30,7 @@ install: awk
 	install -s awk ${DESTDIR}/bin
 
 profile:	awk.g.o $(FILES) mon.o
-	cc -p -i awk.g.o $(FILES) mon.o -lm
+	${CC} -p -i awk.g.o $(FILES) mon.o -lm
 
 find:
 	egrep -n "$(PAT)" *.[ylhc] awk.def
@@ -46,7 +46,7 @@ proctab.c:	proc
 	./proc >proctab.c
 
 proc:	awk.h proc.o token.o
-	cc -o proc proc.o token.o
+	${CC} -o proc proc.o token.o
 
 clean:
 	-rm -f *.o t.* *temp* *.out *junk* y.tab.* awk.h proc proctab.c awk yacc*

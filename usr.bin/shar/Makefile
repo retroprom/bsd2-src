@@ -20,10 +20,10 @@ OBJS=	shar.o traverse.o
 all: shar traverse shar.0 traverse.0
 
 shar: ${OBJS} Makefile
-	cc ${CFLAGS} ${SEPFLAG} -o shar ${OBJS}
+	${CC} ${CFLAGS} ${SEPFLAG} -o shar ${OBJS}
 
 traverse: traverse.c
-	cc -o traverse -DSTANDALONE traverse.c
+	${CC} -o traverse -DSTANDALONE traverse.c
 
 lint:
 	lint -h ${SRCS}

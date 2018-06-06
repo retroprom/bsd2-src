@@ -12,7 +12,7 @@ SEPFLAG= -i
 all:	z zork
 
 z:	z.c
-	cc -O ${SEPFLAG} -o z z.c
+	${CC} -O ${SEPFLAG} -o z z.c
 
 # All the 1.o stuff is just to do a . = . + 140000
 zork:	1.o o.o 

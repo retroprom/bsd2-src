@@ -17,7 +17,7 @@ SEPFLAG= -i
 all:	talk
 
 talk:	${OBJS}
-	cc ${SEPFLAG} -o talk ${OBJS} -lcurses -ltermlib
+	${CC} ${SEPFLAG} -o talk ${OBJS} -lcurses -ltermlib
 
 ${OBJS}: talk.h talk_ctl.h
 
