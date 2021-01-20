@@ -43,7 +43,7 @@ ranlib.c	2.10 (getting 4.3's would entail lots of changes...)
 ratfor/		4.3
 refer/		4.3  (small mods for 8 char name conflicts)
 rev.c		4.3
-roff		4.3+
+roff/		4.3+
 sleep.c		4.3
 sort.c		4.3
 spell/		4.3  (mods to spell.h for NONSEPARATE machines)
