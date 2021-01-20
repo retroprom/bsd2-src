@@ -27,42 +27,47 @@
 # inappropriate (the if_il.c driver should have been checking if a Unibus
 # Map was present at runtime).
 
-#LINEHZ		50			# clock frequency European
-LINEHZ		60			# clock frequency USA
+#LINEHZ		50		# clock frequency European
+LINEHZ		60		# clock frequency USA
 
 # PDP-11 machine type; allowable values are GENERIC, 44, 70, 73.  GENERIC 
 # should only be used to build a distribution kernel.  The only use of this
 # option is to select the proper in-line PS instructions (references to the
 # PSW use 'spl', 'mfps/mtps' or 'movb' instructions depending on the cpu type).
-PDP11		GENERIC			# distribution kernel
-#PDP11		44			# PDP-11/44
-#PDP11		70			# PDP-11/70,45,50,55
-#PDP11		73			# PDP-11/73,53,83,93,84,94
+PDP11		GENERIC		# distribution kernel
+#PDP11		44		# PDP-11/44
+#PDP11		70		# PDP-11/70,45,50,55
+#PDP11		73		# PDP-11/73,53,83,93,84,94
 
 #########################################
 # GENERAL SYSTEM PARAMETERS		#
 #########################################
 
-IDENT		GENERIC			# machine name
-MAXUSERS	4			# maxusers on machine
+IDENT		GENERIC		# machine name
+MAXUSERS	4		# maxusers on machine
 
 # BOOTDEV is the letter combination denoting the autoboot device,
 # or NONE if not using the autoboot feature.
-BOOTDEV		NONE			# don't autoboot
-#BOOTDEV	dvhp			# DIVA Comp/V boot device
-#BOOTDEV	hk6			# rk06 boot device
-#BOOTDEV	hk7			# rk07 boot device
-#BOOTDEV	ra			# MSCP boot device
-#BOOTDEV	rk			# rk05 boot device
-#BOOTDEV	rl			# rl01/02 boot device
-#BOOTDEV	rm			# rm02/03/05 rp06 boot device
-#BOOTDEV	br			# Eaton BR1537/BR1711 boot device
-#BOOTDEV	sc11			# Emulex SC11/B boot device
-#BOOTDEV	sc21			# Emulex SC21 boot device
-#BOOTDEV	si			# si 9500 boot device
+BOOTDEV		NONE		# don't autoboot
+#BOOTDEV	dvhp		# DIVA Comp/V boot device
+#BOOTDEV	hk6		# rk06 boot device
+#BOOTDEV	hk7		# rk07 boot device
+#BOOTDEV	ra		# MSCP boot device
+#BOOTDEV	rk		# rk05 boot device
+#BOOTDEV	rl		# rl01/02 boot device
+#BOOTDEV	rm		# rm02/03/05 rp06 boot device
+#BOOTDEV	br		# Eaton BR1537/BR1711 boot device
+#BOOTDEV	sc11		# Emulex SC11/B boot device
+#BOOTDEV	sc21		# Emulex SC21 boot device
+#BOOTDEV	si		# si 9500 boot device
 
-# Timezone
-TIMEZONE	0			# kernel uses GMT by default
+# Timezone, in minutes west of GMT
+TIMEZONE	0		# GMT
+#TIMEZONE	300		# EST
+#TIMEZONE	360		# CST
+#TIMEZONE	420		# WST
+#TIMEZONE	480		# PST
+#DST		0		# Daylight Savings Time (1 or 0)
 
 # Filesystem configuration
 # Rootdev, swapdev etc. should be in terms of makedev.  For example,
@@ -73,9 +78,9 @@ TIMEZONE	0			# kernel uses GMT by default
 # which correspond to the partitions as described in the section 4 manual
 # pages.  You can also get the major numbers from the MAKEDEV script in
 # /dev.
-PIPEDEV		makedev(10,0)		# makedev(10,0) xp0a
-ROOTDEV		makedev(10,0)		# makedev(10,0) xp0a
-SWAPDEV		makedev(10,1)		# makedev(10,1) xp0b
+PIPEDEV		makedev(10,0)	# makedev(10,0) xp0a
+ROOTDEV		makedev(10,0)	# makedev(10,0) xp0a
+SWAPDEV		makedev(10,1)	# makedev(10,1) xp0b
 
 # DUMPROUTINE indicates which dump routine should be used.  DUMPDEV
 # should be in terms of makedev.  If DUMPDEV is NODEV no automatic
@@ -83,37 +88,37 @@ SWAPDEV		makedev(10,1)		# makedev(10,1) xp0b
 # resolve the reference.  See param.h and ioconf.c for more information.
 # DUMPLO should leave room for the kernel to start swapping without
 # overwriting the dump.
-DUMPLO		512			# dump start address
-DUMPDEV		NODEV			# makedev(10,1) xp0b
-DUMPROUTINE	nulldev			# no dump routine.
-#DUMPROUTINE	hkdump			# hk driver dump routine
-#DUMPROUTINE	hpdump			# hp driver dump routine
-#DUMPROUTINE	radump			# ra driver dump routine
-#DUMPROUTINE	rldump			# rl driver dump routine
-#DUMPROUTINE	rmdump			# rm driver dump routine
-#DUMPROUTINE	brdump			# br driver dump routine
-#DUMPROUTINE	sidump			# si driver dump routine
-#DUMPROUTINE	xpdump			# xp driver dump routine
-#DUMPROUTINE	tmsdump			# tms driver dump routine
+DUMPLO		512		# dump start address
+DUMPDEV		NODEV		# makedev(10,1) xp0b
+DUMPROUTINE	nulldev		# no dump routine.
+#DUMPROUTINE	hkdump		# hk driver dump routine
+#DUMPROUTINE	hpdump		# hp driver dump routine
+#DUMPROUTINE	radump		# ra driver dump routine
+#DUMPROUTINE	rldump		# rl driver dump routine
+#DUMPROUTINE	rmdump		# rm driver dump routine
+#DUMPROUTINE	brdump		# br driver dump routine
+#DUMPROUTINE	sidump		# si driver dump routine
+#DUMPROUTINE	xpdump		# xp driver dump routine
+#DUMPROUTINE	tmsdump		# tms driver dump routine
 
 #########################################
 # KERNEL CONFIGURATION			#
 #########################################
 
-BADSECT		NO			# bad-sector forwarding
-EXTERNALITIMES	YES			# map out inode time values
-UCB_CLIST	NO			# clists moved from kernel data space
-QUOTA		NO			# dynamic file system quotas
-					# NOTE -- *very* expensive
-SOFUB_MAP	YES			# Software UNIBUS/QBUS map.  Permits
-					# use of 18 bit controllers in a 22 bit
-					# Qbus system.  Normally NO except for
-					# the GENERIC kernel or if you actually
-					# have an 18 bit RX02 on a Qbus system.
+BADSECT		NO		# bad-sector forwarding
+EXTERNALITIMES	YES		# map out inode time values
+UCB_CLIST	NO		# clists moved from kernel data space
+QUOTA		NO		# dynamic file system quotas
+				# NOTE -- *very* expensive
+SOFUB_MAP	YES		# Software UNIBUS/QBUS map.  Permits
+				# use of 18 bit controllers in a 22 bit
+				# Qbus system.  Normally NO except for
+				# the GENERIC kernel or if you actually
+				# have an 18 bit RX02 on a Qbus system.
 
 # UCB_METER is fairly expensive, but various programs (iostat, vmstat, etc)
 # use it.
-UCB_METER	NO			# vmstat performance metering
+UCB_METER	NO		# vmstat performance metering
 
 # NBUF is the size of the buffer cache, and is directly related to the UNIBUS
 # mapping registers.  There are 32 total mapping registers, of which 30 are
@@ -126,12 +131,12 @@ UCB_METER	NO			# vmstat performance metering
 # buffers for a 1K file system, NBUF would be 128.  A possible exception would
 # be to reduce the buffers to save on data space, as they were 24 bytes each
 # Should be 'small' for GENERIC, so room for kernel + large program to run.
-NBUF		32			# buffer cache, *must* be <= 240
+NBUF		32		# buffer cache, *must* be <= 240
 
 # DIAGNOSTIC does various run-time checks, some of which are pretty
 # expensive and at a high priority.  Suggested use is when the kernel
 # is crashing and you don't know why, otherwise run with it off.
-DIAGNOSTIC	NO			# misc. diagnostic loops and checks
+DIAGNOSTIC	NO		# misc. diagnostic loops and checks
 
 #########################################
 # PERIPHERALS: DISK DRIVES		#
@@ -246,7 +251,7 @@ NTB		0		# RS232 interface for Genisco/Hitachi tablets
 # Defining FPSIM to YES compiles a floating point simulator into the kernel
 # which will catch floating point instruction traps from user space.  This
 # doesn't work at present.
-FPSIM		NO			# floating point simulator
+FPSIM		NO		# floating point simulator
 
 # To enable profiling, the :splfix script must be changed to use spl6 instead
 # of spl7 (see conf/:splfix.profile), also, you have to have a machine with a
@@ -258,3 +263,4 @@ FPSIM		NO			# floating point simulator
 PROFILE		NO		# system profiling with KW11P clock
 
 INGRES		NO		# include the Ingres lock driver
+
