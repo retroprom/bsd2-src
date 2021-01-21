@@ -10,8 +10,8 @@
  * rp03 disk driver
  */
 
-#include "../h/param.h"
-#include "../h/inode.h"
+#include "../sys/param.h"
+#include "../sys/inode.h"
 #include "../pdpuba/rpreg.h"
 #include "saio.h"
 

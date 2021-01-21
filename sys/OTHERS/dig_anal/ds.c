@@ -55,20 +55,20 @@ static char RCSid[] = "$Header: ds.c,v 1.8 84/10/03 04:44:51 lepreau Exp $";
  * the strategy routine must be fixed as shown above.
  */
 
-#include "../h/param.h"
-#include "../h/systm.h"
-#include "../h/mount.h"
-#include "../h/dir.h"
-#include "../h/user.h"
+#include "../sys/param.h"
+#include "../sys/systm.h"
+#include "../sys/mount.h"
+#include "../sys/dir.h"
+#include "../sys/user.h"
 #include "../machine/pte.h"
-#include "../h/map.h"
-#include "../h/buf.h"
-#include "../h/kernel.h"
+#include "../sys/map.h"
+#include "../sys/buf.h"
+#include "../sys/kernel.h"
 #include "../vaxuba/ubavar.h"
-#include "../h/conf.h"
-#include "../h/proc.h"
-#include "../h/uio.h"
-#include "../h/file.h"
+#include "../sys/conf.h"
+#include "../sys/proc.h"
+#include "../sys/uio.h"
+#include "../sys/file.h"
 
 #include "../vaxuba/dsc.h"
 

@@ -53,8 +53,8 @@
 #include "../vaxuba/ubareg.h"
 #include "../vaxuba/ubavar.h"
 
-#include "../h/time.h"
-#include "../h/kernel.h"
+#include "../sys/time.h"
+#include "../sys/kernel.h"
 
 int	dmctimer;			/* timer started? */
 int	dmc_timeout = 8;		/* timeout value */
