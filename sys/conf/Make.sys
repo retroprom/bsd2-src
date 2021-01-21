@@ -38,11 +38,11 @@ CFILES=	${S}/init_main.c ${S}/init_sysent.c ${S}/kern_acct.c		\
 	${S}/vm_sched.c ${S}/vm_swap.c ${S}/vm_swp.c ${S}/vm_text.c
 OBJS=	init_main.o init_sysent.o kern_acct.o kern_clock.o		\
 	kern_descrip.o kern_exec.o kern_exit.o kern_fork.o kern_mman.o	\
-	kern_proc.o kern_prot.o kern_resource.o kern_sig.o kern_sysctl.o \
-	kern_prot2.o kern_sig2.o					\
+	kern_proc.o kern_prot.o kern_resource.o kern_sig.o		\
+	kern_sysctl.o kern_prot2.o kern_sig2.o				\
 	kern_subr.o kern_synch.o kern_time.o kern_xxx.o quota_sys.o	\
-       quota_kern.o quota_ufs.o quota_subr.o subr_log.o subr_prf.o subr_rmap.o \
-	ingreslock.o							\
+	quota_kern.o quota_ufs.o quota_subr.o subr_log.o subr_prf.o	\
+	subr_rmap.o ingreslock.o					\
 	subr_xxx.o sys_generic.o sys_inode.o sys_kern.o			\
 	sys_pipe.o sys_process.o syscalls.o tty.o tty_conf.o tty_pty.o	\
 	tty_subr.o tty_tb.o tty_tty.o ufs_alloc.o ufs_bio.o ufs_bmap.o	\
