@@ -1,6 +1,21 @@
+#
+# <dev>		<file>	<type>	<options>	<dump>	<check>
+#
+
+# Every system needs a root filesystem
 /dev/ra0a	/	ufs	rw		1	1
+# Most systems will also have swap
 /dev/ra0b	none	swap	sw		0	0
-/dev/ra0d	/usr	ufs	rw		1	2
-/dev/ra0e	/tmp	ufs	rw,async	1	3
-/dev/ra0f	/user	ufs	rw,quotas	1	4
-/dev/ra0g	/xxx	ufs	rw		1	5
+
+# Separate /tmp can guard against corruption
+#/dev/ra0d	/tmp	ufs	rw,async	1	2
+# Separate /var can guard against corruption
+#/dev/ra0e	/var	ufs	rw		1	2
+# Separate /usr is standard practice
+#/dev/ra0f	/usr	ufs	rw,quotas	1	2
+# Separate /home is modern practice
+#/dev/ra0g	/home	ufs	rw,quotas	1	2
+
+# Alternatively you can put /tmp on a ram disk
+#/dev/ram	/tmp	ufs	rw,async	0	0
+
