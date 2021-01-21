@@ -90,9 +90,9 @@ buildlib: FRC
 	cd lib/c2; make ${MFLAGS} DESTDIR=${DESTDIR} install
 	@echo
 	@echo compiling usr.lib
-	cd usr.lib; make ${MFLAGS} ${SRC_MFLAGS}
+	cd usr.lib; make ${MFLAGS}
 	@echo installing /usr/lib
-	cd usr.lib; make ${MFLAGS} ${SRC_MFLAGS} DESTDIR=${DESTDIR} install
+	cd usr.lib; make ${MFLAGS} DESTDIR=${DESTDIR} install
 
 FRC:
 
