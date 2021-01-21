@@ -70,7 +70,7 @@ symlinks: mkdirs
 	rm -rf ${DESTDIR}/usr/include/sys
 	-if [ ! -s ${DESTDIR}/usr/include/sys ]; \
 	then \
-		ln -s ../../sys/h ${DESTDIR}/usr/include/sys; \
+		ln -s ../../sys/sys ${DESTDIR}/usr/include/sys; \
 	else \
 		echo ${DESTDIR}/usr/include/sys not removed; \
 	fi
@@ -82,9 +82,9 @@ copies: mkdirs
 		tar cf - $$i/*.h | (cd ${DESTDIR}/usr/include; tar xpfB -); \
 	done
 	rm -rf ${DESTDIR}/usr/include/sys
-	mkdir -p ${DESTDIR}/usr/include/sys
+	mkdir ${DESTDIR}/usr/include/sys 
 	chmod 775 ${DESTDIR}/usr/include/sys
-	-(cd /sys/h; tar cf - *.h | (cd ${DESTDIR}/usr/include/sys; tar xpfB -))
+	-(cd /sys/sys; tar cf - *.h | (cd ${DESTDIR}/usr/include/sys; tar xpfB -))
 
 mkdirs:
 	-mkdir -p ${DESTDIR}/usr/include
