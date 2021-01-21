@@ -18,7 +18,7 @@ GRP=wheel
 SUBDIR= root uucp
 FILES= aliases crontab disktab dtab fstab ftpusers gettytab group hosts \
 	hosts.allow hosts.deny inetd.conf inetd.conf.nowrappers \
-	motd netstart networks ntp.conf passwd phones printcap protocols \
+	motd networks ntp.conf passwd phones printcap protocols \
 	rc rc.conf rc.daemons rc.default rc.local rc.network remote services \
 	shells syslog.conf ttys
 
