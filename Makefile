@@ -57,7 +57,7 @@ lib:	FRC
 usr.lib ${SRCDIR}: FRC
 	cd $@; make ${MFLAGS} ${SRC_MFLAGS}
 
-build: buildlib ${SRCDIR}
+build: buildlib ${SRCDIR} FRC
 
 buildsrc: ${SRCDIR} FRC
 
