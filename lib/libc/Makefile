@@ -42,7 +42,7 @@
 #
 HOSTLOOKUP=	named
 #HOSTLOOKUP=	hosttable
-#							
+
 DESTDIR=
 INSTALL=install -m 644
 DFLMON=	mon.o
