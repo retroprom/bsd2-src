@@ -59,6 +59,8 @@ usr.lib ${SRCDIR}: FRC
 
 build: buildlib ${SRCDIR}
 
+buildsrc: ${SRCDIR} FRC
+
 buildlib: FRC
 	@echo compiling libc.a
 	cd lib/libc; make ${MFLAGS} ${LIBCDEFS}
