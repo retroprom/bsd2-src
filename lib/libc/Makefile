@@ -77,8 +77,8 @@ libc.a libc_p.a: ${MACHINE}/csu ${ALL} net/${HOSTLOOKUP}
 	ar ma doprnt.o libc_p.a ffltpr.o
 	rm -rf tmp
 
-${MACHINE}/csu ${ALL} net/${HOSTLOOKUP}: FRC
-	cd $@; make ${MFLAGS} DEFS=${DEFS}
+${ALL} net/${HOSTLOOKUP} ${MACHINE}/csu: FRC
+	cd $@; make ${MFLAGS} DEFS=${DEFS} HOSTLOOKUP=${HOSTLOOKUP}
 
 FRC:
 
