@@ -1,4 +1,6 @@
-#!/bin/sh
+#
+# rc.daemon - startup script for daemons
+#
 
 # Start standard daemons
 echo -n 'Starting standard daemons:'			>/dev/console 2>&1

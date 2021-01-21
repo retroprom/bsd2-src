@@ -1,5 +1,5 @@
 #
-#	@(#)rc	2.1 (2.111BSD) 1996/10/21
+# rc - system startup script
 #
 HOME=/; export HOME
 PATH=/bin:/sbin:/usr/sbin:/usr/ucb:/usr/bin; export PATH
@@ -160,4 +160,3 @@ echo 'System startup has finished.'			>/dev/console 2>&1
 
 # Exit with success
 exit 0
-

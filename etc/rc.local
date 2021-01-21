@@ -1,6 +1,8 @@
-#!/bin/sh
-# Host-specific initialization
+#
+# rc.local - site-specific startup script
+#
 
+# Update motd with system version
 sysctl -n kern.version | head -1 > /tmp/t1
 tail +2 /etc/motd >>/tmp/t1
 mv /tmp/t1 /etc/motd

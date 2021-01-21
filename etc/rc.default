@@ -1,7 +1,11 @@
-# Default values for rc.conf
+#
+# rc.default - default values for rc.conf
+#
 
+# System hostname
 hostname=amnesiac
 
+# Automatic RAM disk
 ramd_enable=no
 ramd_size=0
 ramd_mount=/tmp
@@ -9,21 +13,25 @@ ramd_owner=root
 ramd_group=wheel
 ramd_mode=1777
 
+# Network configuration
 inet_enable=no
 inet_gateway=
 inet_interfaces=
 
+# Standard daemons
 acct_enable=no
 acct_file=/usr/adm/acct
 acct_flags=
 cron_enable=yes
-inetd_enable=no
 lpd_enable=no
-named_enable=no
-ntpd_enable=no
-routed_enable=no
-rwhod_enable=no
 sendmail_enable=no
 sendmail_flags=-q1h
 syslogd_enable=yes
 syslogd_flags=
+
+# Network daemons
+inetd_enable=no
+named_enable=no
+ntpd_enable=no
+routed_enable=no
+rwhod_enable=no
