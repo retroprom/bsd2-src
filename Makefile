@@ -73,6 +73,8 @@ buildlib: FRC
 	cd lib/ccom; make ${MFLAGS} DESTDIR=${DESTDIR} install
 	cd lib/cpp; make ${MFLAGS} DESTDIR=${DESTDIR} install
 	cd lib/c2; make ${MFLAGS} DESTDIR=${DESTDIR} install
+	@echo
+	@echo cleaning up
 	cd lib; make ${MFLAGS} clean
 	@echo
 	@echo re-compiling libc.a
