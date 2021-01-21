@@ -15,10 +15,10 @@
 # Non-network, but separate I/D kernel			#
 #########################################################
 
-H=	../h
+H=	../sys
 I=	/usr/include
 M=	../machine
-S=	../sys
+K=	../kern
 U=	../pdpuba
 MB=	../pdpmba
 
@@ -126,13 +126,13 @@ depend: FRC
 		make -f Make.$$i CFLAGS="${CFLAGS}" depend; done
 	mkdep ${CFLAGS} param.c ioconf.c ../conf/checksys.c
 
-TAGSFILE= ${S}/tags
-TLIST=	${H} ${I} ${N1} ${N2} ${N3} ${N4} ${N5} ${N6} ${M} ${S} ${U} ${MB} ${SS}
+TAGSFILE= ${K}/tags
+TLIST=	${H} ${I} ${N1} ${N2} ${N3} ${N4} ${N5} ${N6} ${M} ${K} ${U} ${MB} ${SS}
 
 tags: FRC
 	rm -f ${TAGSFILE}
 	for i in ${TLIST}; do \
-		(cd ${S}; /usr/ucb/ctags -a -t $$i/*.[ch]); done
+		(cd ${K}; /usr/ucb/ctags -a -t $$i/*.[ch]); done
 	/usr/bin/egrep "^ASENTRY|^ENTRY" ${M}/*.s | \
 	    /bin/sed 's;\([^:]*\):\([^(]*\)(\([^)]*\));\3	\1	/^\2(\3)$$/;' \
 	    >> ${TAGSFILE}

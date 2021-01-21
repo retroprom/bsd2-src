@@ -1,6 +1,6 @@
 # 2.11BSD 1.0 April 8, 1994
 
-H=	/sys/h
+H=	/sys/sys
 
 DEFS=	-DKERNEL -I. -I${H}
 

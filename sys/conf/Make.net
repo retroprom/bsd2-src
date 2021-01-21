@@ -44,16 +44,16 @@ N6C=	${N6}/if_acc.c ${N6}/if_css.c ${N6}/if_de.c ${N6}/if_dmc.c	\
 N6O=	if_acc.o if_css.o if_de.o if_dmc.o if_ec.o if_en.o if_il.o	\
 	if_qe.o if_qt.o if_sri.o if_uba.o if_vv.o
 
-S=	../sys
-SC=	${S}/sys_socket.c ${S}/sys_net.c ${S}/uipc_domain.c		\
-	${S}/uipc_mbuf.c ${S}/uipc_proto.c ${S}/uipc_socket.c		\
-	${S}/uipc_socket2.c ${S}/uipc_usrreq.c
-SO=	sys_socket.o sys_net.o uipc_domain.o uipc_mbuf.o uipc_proto.o	\
+K=	../kern
+KC=	${K}/sys_socket.c ${K}/sys_net.c ${K}/uipc_domain.c		\
+	${K}/uipc_mbuf.c ${K}/uipc_proto.c ${K}/uipc_socket.c		\
+	${K}/uipc_socket2.c ${K}/uipc_usrreq.c
+KO=	sys_socket.o sys_net.o uipc_domain.o uipc_mbuf.o uipc_proto.o	\
 	uipc_socket.o uipc_socket2.o uipc_usrreq.o
 
-VPATH=	../net:../netimp:../netinet:../netns:../pdpif:../sys
-SRCS=	${N1C} ${N2C} ${N3C} ${N5C} ${N6C} ${SC}
-OBJS=	${N1O} ${N2O} ${N3O} ${N5O} ${N6O} ${SO}
+VPATH=	../net:../netimp:../netinet:../netns:../pdpif:../kern
+SRCS=	${N1C} ${N2C} ${N3C} ${N5C} ${N6C} ${KC}
+OBJS=	${N1O} ${N2O} ${N3O} ${N5O} ${N6O} ${KO}
 
 .c.o:
 	${CC} ${CFLAGS} -S $*.c

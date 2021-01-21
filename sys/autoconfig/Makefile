@@ -14,7 +14,7 @@ SRCS=	attach.c do_config.c main.c read_dtab.c read_nlist.c uprobe.c	\
 	siauto.c tmauto.c tsauto.c xpauto.c		\
 	rxauto.c dnauto.c tmsauto.c dhvauto.c
 
-CFLAGS=	-O -I. -I../h -I../pdpuba -I../pdp
+CFLAGS=	-O -I. -I.. -I../pdpuba -I../pdp
 LFLAG=	-i
 
 autoconfig: ${OBJS}

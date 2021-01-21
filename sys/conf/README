@@ -36,7 +36,7 @@ the comments in /sys/pdpstand/M.s for more information and a workaround
 (which will not work with the 3Com ethernet board installed in the system).
 	There is one possible problem that you need to be aware of.  Running
 the shell script config generates the file localopts.h in the system include
-files directory, "../h".  If you change your configuration, config will
+files directory, "../sys".  If you change your configuration, config will
 overwrite your old version of that file.  Therefore, if you want to return
 to the old version of your system, you'll have to recover the file before
 you try and remake the old system.  To make this easy, config saves a copy

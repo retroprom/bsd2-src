@@ -16,10 +16,10 @@ OPTS=-DGENERIC -DSOFUB_MAP
 # Non-network, but separate I/D kernel			#
 #########################################################
 
-H=	../h
+H=	../sys
 I=	/usr/include
 M=	../machine
-S=	../sys
+S=	../kern
 U=	../pdpuba
 MB=	../pdpmba
 

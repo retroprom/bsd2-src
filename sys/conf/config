@@ -21,7 +21,7 @@
 #
 #	1995/11/22 - added software map (SOFUB_MAP) option.
 
-LO=../h/localopts.h
+LO=../sys/localopts.h
 
 if [ $# -ne 1 ]; then
 	echo "usage: $0 machinename"

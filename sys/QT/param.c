@@ -6,21 +6,21 @@
  *	@(#)param.c	2.2 (2.11BSD GTE) 1997/2/14
  */
 
-#include "../h/param.h"
-#include "../h/systm.h"
-#include "../h/buf.h"
-#include "../h/time.h"
-#include "../h/resource.h"
-#include "../h/proc.h"
-#include "../h/text.h"
-#include "../h/file.h"
-#include "../h/dir.h"
-#include "../h/inode.h"
-#include "../h/fs.h"
-#include "../h/mount.h"
-#include "../h/callout.h"
-#include "../h/map.h"
-#include "../h/clist.h"
+#include "../sys/param.h"
+#include "../sys/systm.h"
+#include "../sys/buf.h"
+#include "../sys/time.h"
+#include "../sys/resource.h"
+#include "../sys/proc.h"
+#include "../sys/text.h"
+#include "../sys/file.h"
+#include "../sys/dir.h"
+#include "../sys/inode.h"
+#include "../sys/fs.h"
+#include "../sys/mount.h"
+#include "../sys/callout.h"
+#include "../sys/map.h"
+#include "../sys/clist.h"
 #include "../machine/seg.h"
 
 /*
@@ -108,7 +108,7 @@ struct map	swapmap[1] = {
 };
 
 #ifdef QUOTA
-#include "../h/quota.h"
+#include "../sys/quota.h"
 struct BigQ {
 	struct	quota xquota[NQUOTA];		/* the quotas themselves */
 	struct	dquot *ixdquot[NINODE];		/* 2.11 equiv of i_dquot */

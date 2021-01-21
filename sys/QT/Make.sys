@@ -11,8 +11,8 @@
 #
 #	2.6 (2.11BSD GTE) 1997/11/28
 #
-S=	../sys
-VPATH=	../sys
+S=	../kern
+VPATH=	../kern
 
 CFILES=	${S}/init_main.c ${S}/init_sysent.c ${S}/kern_acct.c		\
 	${S}/kern_clock.c ${S}/kern_descrip.c ${S}/kern_exec.c		\

@@ -16,7 +16,7 @@ OPTS=-DSMS -DUCB_METER -DINET -DQUOTA -DUCB_CLIST
 # Networking, separate I/D kernel			#
 #########################################################
 
-H=	../h
+H=	../sys
 I=	/usr/include
 M=	../machine
 N1=	../net
@@ -24,7 +24,7 @@ N2=	../netimp
 N3=	../netinet
 N4=	../netns
 N6=	../pdpif
-S=	../sys
+S=	../kern
 U=	../pdpuba
 MB=	../pdpmba
 
