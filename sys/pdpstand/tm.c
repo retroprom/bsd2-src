@@ -10,7 +10,7 @@
  * TM11 - TU10/TE10/TS03 standalone tape driver
  */
 
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../pdpuba/tmreg.h"
 #include "saio.h"
 

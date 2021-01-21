@@ -26,7 +26,7 @@
 #define	rxwait()	while (((rxaddr->rxcs) & RX_XREQ) == 0)
 #define rxdone()	while (((rxaddr->rxcs) & RX_DONE) == 0)
 
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../pdpuba/rxreg.h"
 #include "saio.h"
 

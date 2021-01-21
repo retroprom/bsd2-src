@@ -12,7 +12,7 @@
  *	T300, T200, T80 and T50 drives.
  */
 
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../pdpuba/brreg.h"
 #include "saio.h"
 

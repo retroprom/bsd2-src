@@ -6,8 +6,8 @@
  *	@(#)sys.c	2.4 (2.11BSD) 1996/3/8
  */
 
-#include "../h/param.h"
-#include "../h/dir.h"
+#include "../sys/param.h"
+#include "../sys/dir.h"
 #include "../machine/seg.h"
 #include "../machine/iopage.h"
 #include "../machine/psl.h"

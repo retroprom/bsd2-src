@@ -10,7 +10,7 @@
  *	Stand-alone TS11/TU80/TS05/TK25 magtape driver.
  */
 
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../pdpuba/tsreg.h"
 #include "saio.h"
 

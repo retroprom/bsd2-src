@@ -5,7 +5,7 @@
 */
 
 #define	DKTYPENAMES
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "saio.h"
 
 	int	Nolabelerr = 1;		/* Inhibit spurious label error msgs */

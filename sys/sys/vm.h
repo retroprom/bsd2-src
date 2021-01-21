@@ -7,7 +7,7 @@
  */
 
 /*
- *	#include "../h/vm.h"
+ *	#include "../sys/vm.h"
  * or	#include <vm.h>		 in a user program
  * is a quick way to include all the vm header files.
  */

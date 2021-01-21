@@ -6,7 +6,7 @@
  *	@(#)conf.c	2.8 (2.11BSD) 2000/10/20
  */
 
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "saio.h"
 
 	int	nullsys();

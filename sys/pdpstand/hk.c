@@ -10,7 +10,7 @@
  *	RK06/07 disk driver for standalone
  */
 
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../pdpuba/hkreg.h"
 #include "saio.h"
 

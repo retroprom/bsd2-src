@@ -9,7 +9,7 @@
 /*
  * SMD disk driver
  */
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../pdpuba/hpreg.h"
 #include "../machine/iopage.h"
 #include "saio.h"

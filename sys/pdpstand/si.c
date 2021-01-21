@@ -8,7 +8,7 @@
  *	SI 9500 CDC 9766 Stand Alone disk driver
  */
 
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../pdpuba/sireg.h"
 #include "saio.h"
 

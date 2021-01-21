@@ -5,10 +5,10 @@
  *
  *	@(#)boot.c	4.0 (2.11BSD) 2016/3/18
  */
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../machine/seg.h"
 #include "../machine/koverlay.h"
-#include "../h/reboot.h"
+#include "../sys/reboot.h"
 #include "saio.h"
 #include <a.out.h>
 

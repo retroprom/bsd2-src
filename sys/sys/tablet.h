@@ -11,7 +11,7 @@
  * Tablet line discipline.
  */
 #ifdef KERNEL
-#include "../h/ioctl.h"
+#include "../sys/ioctl.h"
 #else
 #include <sys/ioctl.h>
 #endif

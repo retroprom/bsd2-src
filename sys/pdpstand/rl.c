@@ -14,7 +14,7 @@
  *	Armando P. Stettner  Digital Equipment Corp.  July, 1980
  */
 
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../pdpuba/rlreg.h"
 #include "saio.h"
 

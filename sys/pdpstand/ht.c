@@ -10,7 +10,7 @@
  * TM02/3 - TU16/TE16/TU77 standalone tape driver
  */
 
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../pdpuba/htreg.h"
 #include "saio.h"
 

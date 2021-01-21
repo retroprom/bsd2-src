@@ -10,7 +10,7 @@
  * RK disk driver
  */
 
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../pdpuba/rkreg.h"
 #include "saio.h"
 

@@ -9,7 +9,7 @@
 /*
  * MSCP disk device driver (rx23, rx33, rx50, rd??, ra??, rz??)
  */
-#include "../h/param.h"
+#include "../sys/param.h"
 #include "../machine/mscp.h"
 #include "../pdpuba/rareg.h"
 #include "saio.h"
