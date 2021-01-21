@@ -1,38 +1,44 @@
-
 #
 #	@(#)rc	2.1 (2.111BSD) 1996/10/21
 #
 HOME=/; export HOME
 PATH=/bin:/sbin:/usr/sbin:/usr/ucb:/usr/bin; export PATH
 
-# If you have a ram disk configured into your system which is listed in
-# /etc/fstab, you'll have to do a mkfs on it here and probably change the
-# ownership and modes below after the standard file systems have been
-# mounted.
-#
-RAMSIZE=0
-RAMFS=/tmp
-RAMOWNER=root
-RAMGROUP=wheel
-RAMMODE=1777
+# Show a startup banner
+echo ''							>/dev/console 2>&1
+echo ''							>/dev/console 2>&1
+echo 'Starting the system.'				>/dev/console 2>&1
+echo ''							>/dev/console 2>&1
+date							>/dev/console 2>&1
+echo ''							>/dev/console 2>&1
 
-if [ ${RAMSIZE} != 0 ]
-then
-	mkfs /dev/ram ${RAMSIZE} 1 2
+# Warn about power failure
+if [ "$2" = powerfail ]; then
+	echo ''						>/dev/console 2>&1
+	echo 'WARNING - REBOOT AFTER POWER FAILURE'	>/dev/console 2>&1
+	echo ''						>/dev/console 2>&1
 fi
 
-if [ "$2" = powerfail ]
-then
-	echo REBOOTING AFTER POWER FAILURE >/dev/console 2>&1
+# Load configuration
+echo 'Loading configuration.'				>/dev/console 2>&1
+. /etc/rc.default
+. /etc/rc.conf
+
+# Initialize the ram disk
+if [ "${ramd_enable}" = yes -a "${ramd_size}" = 0 ]; then
+	echo ''						>/dev/console 2>&1
+	echo 'WARNING - RAM DISK SIZE NOT SPECIFIED'	>/dev/console 2>&1
+	echo ''						>/dev/console 2>&1
+	ramd_enable=no
 fi
-if [ "$1" = fastboot ]
-then
-	echo ''
-	echo Fast boot ... skipping disk checks		>/dev/console 2>&1
-elif [ "$1" = autoboot ]
-then
-	echo Automatic reboot in progress... 		>/dev/console 2>&1
-	date						>/dev/console 2>&1
+if [ "${ramd_enable}" = yes ]; then
+	echo 'Formatting ram disk.'			>/dev/console 2>&1
+	mkfs -s "${ramd_size}" -i 1024 -m 2 -n 1 /dev/ram
+fi
+
+# Perform file system checks
+if [ "$1" = autoboot ]; then
+	echo 'Automatic boot... checking disks.'	>/dev/console 2>&1
 	# this will *only* work if fsck can do your root file system
 	# without a temporary file, and if the root file system is
 	# checked alone in a pass by itself -- be careful!  This can
@@ -40,7 +46,9 @@ then
 	fsck -p -t /_FSCK_TMP_FILE			>/dev/console 2>&1
 	case $? in
 	0)
+		echo ''					>/dev/console 2>&1
 		date					>/dev/console 2>&1
+		echo ''					>/dev/console 2>&1
 		;;
 	2)
 		exit 1
@@ -49,117 +57,107 @@ then
 		reboot -n
 		;;
 	8)
-		echo "Automatic reboot failed... help!"	>/dev/console 2>&1
+		echo 'Automatic reboot failed... help!'	>/dev/console 2>&1
 		exit 1
 		;;
 	12)
-		echo "Reboot interrupted"		>/dev/console 2>&1
+		echo 'Reboot interrupted'		>/dev/console 2>&1
 		exit 1
 		;;
 	*)
-		echo "Unknown error in reboot"		>/dev/console 2>&1
+		echo 'Unknown error in reboot'		>/dev/console 2>&1
 		exit 1
 		;;
 	esac
+elif [ "$1" = fastboot ]; then
+	echo 'Fast boot... skipping disk checks.'	>/dev/console 2>&1
 else
-	date >/dev/console 2>&1
+	echo 'Normal boot... skipping disk checks.'	>/dev/console 2>&1
 fi
 
-# attempt to rationally recover the passwd file if needed
-if [ -s /etc/ptmp ]
-then
- 	echo 'password file may be incorrect' > /dev/console
-fi
-
-#
-# First umount everything in case the system is going back into multiuser
-# mode.  If the system is being booted for the first time nothing is mounted
-# except the root filesystem and umount ignores attempts to unmount /.
-#
+# Unmount everything in case we have something mounted
 umount -a
-#
-# Now mount everything mentioned in /etc/fstab *except* filesystems with the
-# 'na' (noauto) option.
-#
+
+# Mount all filesystems marked for automatic mounting
+echo 'Mounting all file systems.'			>/dev/console 2>&1
 mount -a						>/dev/console 2>&1
 
-if [ ${RAMSIZE} != 0 ]
-then
-	chown ${RAMOWNER}.${RAMGROUP} ${RAMFS}
-	chmod ${RAMMODE} ${RAMFS}
+# Finish initializing the ram disk
+if [ "${ramd_enable}" = yes ]; then
+	echo 'Preparing ram disk for use.'		>/dev/console 2>&1
+	chown "${ramd_owner}.${ramd_group}" "${ramd_mount}"
+	chmod "${ramd_mode}"                "${ramd_mount}"
 fi
 
-	echo -n 'checking quotas:'	>/dev/console 2>&1
-	quotacheck -a 			>/dev/console 2>&1
-	echo ' done.'			>/dev/console 2>&1
+# Initialize disk quotas
+echo 'Checking quotas.'					>/dev/console 2>&1
+quotacheck -a						>/dev/console 2>&1
 quotaon -a
 
+# Update the device database
+echo 'Updating device database.'			>/dev/console 2>&1
 dev_mkdb
 
-ps -U					>/dev/console 2>&1
-rm -f /etc/nologin
-rm -f /usr/spool/uucp/LCK.*
-rm -f /usr/spool/uucp/STST/*
+# Update the process database
+echo 'Updating process database.'			>/dev/console 2>&1
+ps -U							>/dev/console 2>&1
+
+# Clean up tty permissions
+echo 'Cleaning tty permissions.'			>/dev/console 2>&1
 chmod 666 /dev/tty[pqrs]*
 
-# set hostname and INET, turn on network
-. /etc/netstart
+# Allow logins
+echo 'Logins are now allowed.'				>/dev/console 2>&1
+rm -f /etc/nologin
 
-if [ $INET = YES ]; then
-			echo 'starting system logger'	>/dev/console 2>&1
+# Clean up uucp files
+echo 'Cleaning uucp locks.'				>/dev/console 2>&1
+rm -f /usr/spool/uucp/LCK.*
+rm -f /usr/spool/uucp/STST/*
+
+# Initialize networking
+. /etc/rc.network
+
+# Start syslogd when networking is available
+if [ "${inet_enable}" = yes -a "${syslogd_enable}" = yes ]; then
+	echo 'Starting syslogd.'			>/dev/console 2>&1
 	rm -f /dev/log
-	syslogd
+	syslogd ${syslogd_flags}
 fi
 
-# /etc/crash should be a symbolic link to the crash directory
-# if core dumps are to be saved.
+# Check for core dumps if /etc/crash exists
 if [ -d /etc/crash ]; then
-	echo		'checking for core dump... '	>/dev/console 2>&1
-	savecore /etc/crash			>/dev/console 2>&1
+	echo 'Checking for core dumps.'			>/dev/console 2>&1
+	savecore /etc/crash				>/dev/console 2>&1
 fi
 
-		echo preserving editor files 	>/dev/console 2>&1
-		(cd /tmp; /usr/sbin/expreserve -a)
-		echo clearing /tmp 		>/dev/console 2>&1
+# Warn about ongoing vipw sessions
+if [ -s /etc/ptmp ]; then
+	echo ''						>/dev/console 2>&1
+	echo 'WARNING - PASSWD FILE NEEDS RECOVERY'	>/dev/console 2>&1
+	echo ''						>/dev/console 2>&1
+fi
+
+# Check editor recovery
+echo 'Checking for editor recovery.'			>/dev/console 2>&1
+(cd /tmp; /usr/sbin/expreserve -a)
+
+# Clean tmp directory
+echo 'Cleaning temporary files.'			>/dev/console 2>&1
 (cd /tmp; find . ! -name . ! -name lost+found ! -name quotas -exec rm -r {} \; )
 
-			echo -n standard daemons:	>/dev/console 2>&1
-update;		echo -n ' update'		>/dev/console 2>&1
-cron;		echo -n ' cron'			>/dev/console 2>&1
-accton /usr/adm/acct;	echo -n ' accounting'	>/dev/console 2>&1
-			echo '.'			>/dev/console 2>&1
+# Start daemons
+. /etc/rc.daemons
 
-if [ $INET = YES ]; then
-		echo -n starting network daemons:	>/dev/console 2>&1
-
-	# $routedflags is imported from /etc/netstart;
-	# if $routedflags == NO, routed isn't run.
-	if [ "${routedflags-NO}" != NO ]; then
-		routed $routedflags; echo -n ' routed' >/dev/console 2>&1
-	fi
-
-	# $named is imported from /etc/netstart;
-	# if $named is set to something other than NO, named is run.
-	if [ "${named-NO}" != NO ]; then
-		named;		echo -n ' named'>/dev/console 2>&1
-	fi
-	/usr/sbin/inetd;		echo -n ' inetd'>/dev/console 2>&1
-
-	# $rwhod is imported from /etc/netstart;
-	# if $rwhod is set to something other than NO, rwhod is run.
-	if [ "${rwhod}" != NO ]; then
-		rwhod;	echo -n ' rwhod'	>/dev/console 2>&1
-	fi
-	rm -f /dev/printer
-	/usr/sbin/lpd;		echo -n ' printer'	>/dev/console 2>&1
-				echo '.'		>/dev/console 2>&1
-else
-	# lpd will run even with out networking.
-	echo starting lpd			>/dev/console 2>&1
-	/usr/sbin/lpd
-fi
-
+# Run local script
 /etc/rc.local
 
-date				>/dev/console 2>&1
+# Finished
+echo ''							>/dev/console 2>&1
+date							>/dev/console 2>&1
+echo ''							>/dev/console 2>&1
+echo 'System startup has finished.'			>/dev/console 2>&1
+
+# Exit with success
 exit 0
+

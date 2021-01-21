@@ -1,0 +1,61 @@
+#!/bin/sh
+
+# Start standard daemons
+echo -n 'Starting standard daemons:'			>/dev/console 2>&1
+if [ "${acct_enable}" = yes ]; then
+	accton -f ${acct_file} ${acct_flags}
+	echo -n ' acct'					>/dev/console 2>&1
+fi
+if [ "${cron_enable}" = yes ]; then
+	cron
+	echo -n ' cron'					>/dev/console 2>&1
+fi
+if [ "${update_enable}" = yes ]; then
+	update
+	echo -n ' update'				>/dev/console 2>&1
+fi
+if [ "${lpd_enable}" = yes ]; then
+	rm -f /dev/printer
+	lpd
+	echo -n ' lpd'					>/dev/console 2>&1
+fi
+if [ "${sendmail_enable}" = yes ]; then
+	(cd /usr/spool/mqueue; rm -f lf*)
+	if [ "${inet_enable}" = yes ]; then
+		sendmail ${sendmail_flags} -bd
+	else
+		sendmail ${sendmail_flags}
+	fi
+	echo -n ' sendmail'				>/dev/console 2>&1
+fi
+echo '.'						>/dev/console 2>&1
+
+# Start network daemons
+if [ ${inet_enable} = yes ]; then
+	echo -n 'Starting network daemons:'		>/dev/console 2>&1
+	if [ "${inetd_enable}" = yes ]; then
+		inetd
+		echo -n ' inetd'			>/dev/console 2>&1
+	fi
+	if [ "${named_enable}" = yes ]; then
+		named
+		echo -n ' named'			>/dev/console 2>&1
+	fi
+	if [ "${ntpd_enable}" = yes ]; then
+		ntpd
+		echo -n ' ntpd'				>/dev/console 2>&1
+	fi
+	if [ "${rwhod_enable}" = yes ]; then
+		rwhod
+		echo -n ' rwhod'			>/dev/console 2>&1
+	fi
+	if [ "${timed_enable}" = yes ]; then
+		timed
+		echo -n ' timed'			>/dev/console 2>&1
+	fi
+	if [ "${routed_enable}" = yes ]; then
+		routed ${routed_flags}
+		echo -n ' routed'			>/dev/console 2>&1
+	fi
+	echo '.'					>/dev/console 2>&1
+fi

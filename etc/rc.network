@@ -1,0 +1,42 @@
+#!/bin/sh
+# Network initialization
+
+# Always set the hostname
+echo 'Setting hostname.'				>/dev/console 2>&1
+hostname ${hostname}					>/dev/console 2>&1
+hostid ${hostname}					>/dev/console 2>&1
+
+# Disable networking if not supported by kernel
+if [ `testnet` != YES ]; then
+	echo 'Networking is not available.'		>/dev/console 2>&1
+	inet_enable=no
+fi
+
+# Configure the loopback interface
+if [ "${inet_enable}" = yes ]; then
+	echo 'Configuring loopback interface.'		>/dev/console 2>&1
+	ifconfig lo0 inet localhost up -trailers	>/dev/console 2>&1
+fi
+
+# Configure other interfaces
+if [ "${inet_enable}" = yes -a -n "${inet_interfaces}" ]; then
+	echo 'Configuring network interfaces:'		>/dev/console 2>&1
+	for if in ${inet_interfaces}; do
+		a=`eval echo \\$inet_${if}_address`
+		n=`eval echo \\$inet_${if}_netmask`
+		b=`eval echo \\$inet_${if}_broadcast`
+		echo "  ${if}: ${a} nm=${n} bc=${b}"	>/dev/console 2>&1
+		ifconfig ${if} \
+			inet ${a} \
+			netmask ${n} \
+			broadcast ${b} \
+			up -trailers			>/dev/console 2>&1
+	done
+fi
+
+# Configure default gateway
+if [ "${inet_enable}" = yes -a -n "${inet_gateway}" ]; then
+	echo "Default gateway: ${inet_gateway}."	>/dev/console 2>&1
+	route add default "${inet_gateway}" 1		>/dev/console 2>&1
+fi
+
