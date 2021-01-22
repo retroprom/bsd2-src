@@ -30,7 +30,7 @@ install: reboot
 	ln ${DESTDIR}/usr/man/cat8/reboot.0 ${DESTDIR}/usr/man/cat8/fastboot.0
 	ln ${DESTDIR}/usr/man/cat8/reboot.0 ${DESTDIR}/usr/man/cat8/halt.0
 	install -s -o root -g bin -m 755 reboot ${DESTDIR}/sbin/reboot
-	-rm ${DESTDIR}/sbin/fastboot ${DESTDIR}/sbin/halt
+	-rm -f ${DESTDIR}/sbin/fastboot ${DESTDIR}/sbin/halt
 	ln ${DESTDIR}/sbin/reboot ${DESTDIR}/sbin/halt
 	ln ${DESTDIR}/sbin/reboot ${DESTDIR}/sbin/fastboot
 
