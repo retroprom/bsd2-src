@@ -17,7 +17,7 @@
  * prefer to enter ^D at the single user prompt.  This define offers the 
  * choice of old (traditional) or new (automatic multi-user) behaviour.
 */
-#define AUTOMULTIUSER 0		/* 0 = old behaviour, !0 = new (automatic) behaviour */
+#define AUTOMULTIUSER 1		/* 0 = old behaviour, !0 = new (automatic) behaviour */
 
 #undef	btoc			/* to save space */
 #define	KB	* 1024L
