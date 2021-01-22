@@ -43,22 +43,41 @@ static char sccsid[] = "@(#)mkdir.c	5.7 (Berkeley) 5/31/90";
 #include <sys/stat.h>
 #include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 extern int errno;
+
+int pflag;
+int vflag;
+int mode;
+
+int build();
+int create();
+int usage();
 
 main(argc, argv)
 	int argc;
 	char **argv;
 {
 	extern int optind;
-	int ch, exitval, pflag;
+	mode_t *set;
+	int ch, exitval;
 
-	pflag = 0;
-	while ((ch = getopt(argc, argv, "p")) != EOF)
+	pflag = vflag = 0; mode = 0777;
+	while ((ch = getopt(argc, argv, "pvm:")) != EOF)
 		switch(ch) {
 		case 'p':
 			pflag = 1;
+			break;
+		case 'v':
+			vflag = 1;
+			break;
+		case 'm':
+			if (!(set = (mode_t *)setmode(optarg)))
+				err("%s: invalid file mode", optarg);
+			mode = getmode(set, 0);
+			umask(0);
 			break;
 		case '?':
 		default:
@@ -70,12 +89,10 @@ main(argc, argv)
 
 	for (exitval = 0; *argv; ++argv)
 		if (pflag)
-			exitval |= build(*argv);
-		else if (mkdir(*argv, 0777) < 0) {
-			(void)fprintf(stderr, "mkdir: %s: %s\n",
-			    *argv, strerror(errno));
+			exitval |= build(*argv, mode);
+		else if (create(*argv))
 			exitval = 1;
-		}
+
 	exit(exitval);
 }
 
@@ -84,33 +101,41 @@ build(path)
 {
 	register char *p;
 	struct stat sb;
-	int create, ch;
+	int ch;
 
-	for (create = 0, p = path;; ++p)
+	for (p = path;; ++p)
 		if (!*p || *p  == '/') {
 			ch = *p;
 			*p = '\0';
 			if (stat(path, &sb)) {
-				if (errno != ENOENT || mkdir(path, 0777) < 0) {
-					(void)fprintf(stderr, "mkdir: %s: %s\n",
-					    path, strerror(errno));
+				if (errno != ENOENT || create(path)) {
 					return(1);
 				}
-				create = 1;
 			}
 			if (!(*p = ch))
 				break;
 		}
-	if (!create) {
-		(void)fprintf(stderr, "mkdir: %s: %s\n", path,
-		    strerror(EEXIST));
-		return(1);
+
+	return(0);
+}
+
+create(path)
+     char *path;
+{
+	if (mkdir(path, mode) < 0) {
+		if (!pflag || errno != EEXIST) {
+			(void)fprintf(stderr, "mkdir: %s: %s\n",
+				      path, strerror(errno));
+			return(1);
+		}
 	}
+	if(vflag)
+		(void)fprintf(stderr, "mkdir: created directory '%s'\n", path);
 	return(0);
 }
 
 usage()
 {
-	(void)fprintf(stderr, "usage: mkdir [-p] dirname ...\n");
+	(void)fprintf(stderr, "usage: mkdir [-pv] [-m mode] dirname ...\n");
 	exit(1);
 }

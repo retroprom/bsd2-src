@@ -39,17 +39,23 @@
 .SH NAME
 mkdir \- make directories
 .SH SYNOPSIS
-mkdir [ \-p \fBdirectory_name\fP ... ]
+mkdir [ \-pv ] [ \-m \fBmode\fP ] \fBdirectory\fP ...
 .SH DESCRIPTION
 Mkdir
-creates the directories named as operands, in the order specified,
-using mode \&0777 modified by the current umask(2).
+creates the directories named as operands, in the order specified.
 .PP
 The options are as follows:
 .TP
 \-p
-Create intermediate directories as required.  If this option is not
+Create intermediate directories as required. If this option is not
 specified, the full path prefix of each operand must already exist.
+.TP
+\-v
+Print a message for each directory that is created.
+.TP
+\-m
+Specify an alternate mode. The default is to use \%0777 modified by
+the current umask(2).
 .TP
 The user must have write permission in the parent directory.
 .PP
