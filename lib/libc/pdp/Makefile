@@ -33,8 +33,7 @@ tags:
 
 clean:
 	for i in ${ALL}; do (cd $$i; make ${MFLAGS} clean); done
-	rm -f pdplib pdplib_p tmp/*.o;
-	-rmdir tmp
+	rm -rf pdplib pdplib_p tmp
 
 depend:
 	for i in ${ALL}; do \
