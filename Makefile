@@ -28,7 +28,7 @@
 # DEFS may include -DLIBC_SCCS, -DSYSLIBC_SCCS, both, or neither.
 #
 DFLMON=mon.o
-DEFS= 
+DEFS=
 LIBCDEFS= DFLMON=${DFLMON} DEFS="${DEFS}"
 
 # global flags
