@@ -90,7 +90,9 @@ copies: mkdirs
 	-(cd /sys/h; tar cf - *.h | (cd ${DESTDIR}/usr/include/sys; tar xpfB -))
 
 mkdirs:
-	mkdir -p ${DESTDIR}/usr/include
+	-if [ ! -d ${DESTDIR}/usr/include ]; then \
+		mkdir -p ${DESTDIR}/usr/include; \
+	fi
 
 tags:
 	cwd=/usr/include; \
