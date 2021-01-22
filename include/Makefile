@@ -29,7 +29,7 @@ MACHINE=pdp
 MACHDEP=${MACHINE} pdpif pdpuba pdpmba vaxuba
 NETDIRS=net netimp netinet netns netpup
 SYSDIRS=${NETDIRS} ${MACHDEP}
-SHARED=	symlinks
+SHARED=symlinks
 TAGSFILE=tags
 
 all:
