@@ -26,7 +26,7 @@ depend: ${SRCS}
 
 install: init
 	install -c -o bin -g bin -m 444 ${MAN} ${DESTDIR}/usr/man/cat8
-	-mv /etc/init /etc/init.old
+	-mv ${DESTDIR}/etc/init ${DESTDIR}/etc/init.old
 	install -s -o root -g bin -m 700 init ${DESTDIR}/etc/init
 
 lint: ${SRCS}
