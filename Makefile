@@ -68,11 +68,16 @@ buildlib: FRC
 	cd lib/libc; make ${MFLAGS} DESTDIR=${DESTDIR} install
 	@echo
 	@echo compiling C compiler
-	cd lib; make ${MFLAGS} ccom cpp c2
+	cd bin; make ${MFLAGS} cc
+	cd lib; make ${MFLAGS} ccom c2
 	@echo installing C compiler
+	install -m 755 -o root -g wheel bin/cc ${DESTDIR}/bin/cc
 	cd lib/ccom; make ${MFLAGS} DESTDIR=${DESTDIR} install
-	cd lib/cpp; make ${MFLAGS} DESTDIR=${DESTDIR} install
 	cd lib/c2; make ${MFLAGS} DESTDIR=${DESTDIR} install
+	@echo compiling C preprocessor
+	cd lib; make ${MFLAGS} cpp
+	@echo installing C preprocessor
+	cd lib/cpp; make ${MFLAGS} DESTDIR=${DESTDIR} install
 	@echo
 	@echo cleaning up
 	cd lib; make ${MFLAGS} clean
