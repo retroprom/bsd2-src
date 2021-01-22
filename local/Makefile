@@ -38,10 +38,10 @@ ${STD}:
 # Files listed in ${NSTD} have explicit make lines given below.
 
 install: ${STD} ${NSTD}
-	-mkdir ${MANDIR}
+	-mkdir -p ${MANDIR}
 	-chmod a+r ${MANDIR}
 	-for i in 1 2 3 4 5 6 7 8; do \
-		(mkdir ${MANDIR}/cat$$i; chmod a+r ${MANDIR}/cat$$i); done
+		(mkdir -p ${MANDIR}/cat$$i; chmod a+r ${MANDIR}/cat$$i); done
 	-for i in ${SUBDIR}; do \
 		(cd $$i; make ${MFLAGS} DESTDIR=${DESTDIR} install); done
 	-for i in ${STD} ${NSTD}; do \
