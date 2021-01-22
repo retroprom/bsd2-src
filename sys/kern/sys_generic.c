@@ -21,7 +21,7 @@
 #include "kernel.h"
 #include "systm.h"
 
-/* 
+/*
  * this is consolidated here rather than being scattered all over the
  * place.  the socketops table has to be in kernel space, but since
  * networking might not be defined an appropriate error has to be set
@@ -155,9 +155,9 @@ rwuio(uio)
 		{
 /*
  * The ONLY way we can get here is via the longjump in sleep.  Thus signals
- * have been checked and u_error set accordingly.  If no bytes have been 
- * transferred then all that needs to be done now is 'return'; the system 
- * call will either be restarted or reported as interrupted.  If bytes have 
+ * have been checked and u_error set accordingly.  If no bytes have been
+ * transferred then all that needs to be done now is 'return'; the system
+ * call will either be restarted or reported as interrupted.  If bytes have
  * been transferred then we need to calculate the number of bytes transferred.
 */
 		if	(uio->uio_resid == count)
@@ -413,7 +413,7 @@ retry:
 		}
 	u.u_procp->p_flag &= ~P_SELECT;
 /*
- * If doing a pselect() need to set a temporary mask while in tsleep.  
+ * If doing a pselect() need to set a temporary mask while in tsleep.
  * Returning from pselect after catching a signal the old mask has to be
  * restored.  Save it here and set the appropriate flag.
 */

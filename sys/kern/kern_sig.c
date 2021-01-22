@@ -21,7 +21,7 @@ extern	char	sigprop[];	/* XXX - defined in kern_sig2.c */
 /*
  * Can the current process send the signal `signum' to process `q'?
  * This is complicated by the need to access the `real uid' of `q'.
- * The 'real uid' is in the u area and `q' may be (but usually is not) swapped 
+ * The 'real uid' is in the u area and `q' may be (but usually is not) swapped
  * out.  Use the routine `fill_from_u' which the sysctl() call uses.  See the
  * notes in kern_sysctl.c
  *
@@ -30,8 +30,8 @@ extern	char	sigprop[];	/* XXX - defined in kern_sig2.c */
  * 'saved id' feature and the ability of a setuid program to assume either
  * uid that check was inadequate.
  *
- * The 'c'urrent process is allowed to send a signal to a 't'arget process if 
- * 1) either the real or effective user ids match OR 2) if the signal is 
+ * The 'c'urrent process is allowed to send a signal to a 't'arget process if
+ * 1) either the real or effective user ids match OR 2) if the signal is
  * SIGCONT and the target process is a descendant of the current process
 */
 cansignal(q, signum)

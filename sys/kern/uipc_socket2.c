@@ -49,7 +49,7 @@
  * structure queued on so_q0 by calling sonewconn().  When the connection
  * is established, soisconnected() is called, and transfers the
  * socket structure to so_q, making it available to accept().
- * 
+ *
  * If a socket is closed with sockets on either
  * so_q0 or so_q, these sockets are dropped.
  *

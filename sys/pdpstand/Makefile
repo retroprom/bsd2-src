@@ -34,7 +34,7 @@ DISK=	xp0a
 TAPE=	mt8
 DUMP=	/usr/root.dump
 
-ROOT=	
+ROOT=
 SBINSRC=${ROOT}/usr/src/sbin
 MKFS=	${SBINSRC}/mkfs/mkfs.c
 RESTOR=	${SBINSRC}/restor/restor.c

@@ -142,7 +142,7 @@ setgroups()
 	uap->gidsetsize * sizeof (u.u_groups[0]));
 	if (u.u_error)
 		return;
-	for (gp = &u.u_groups[uap->gidsetsize]; gp < &u.u_groups[NGROUPS]; gp++)		
+	for (gp = &u.u_groups[uap->gidsetsize]; gp < &u.u_groups[NGROUPS]; gp++)
 		*gp = NOGROUP;
 }
 
@@ -177,7 +177,7 @@ getlogin()
 		uap->namelen = sizeof (u.u_login);
 	error = copyout(u.u_login, uap->namebuf, uap->namelen);
 	return(u.u_error = error);
-	}
+}
 
 /*
  * Set login name.
@@ -210,4 +210,4 @@ setlogin()
 	if	(error == 0)
 		bcopy(newname, u.u_login, sizeof (u.u_login));
 	return(u.u_error = error);
-	}
+}

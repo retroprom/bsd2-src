@@ -87,7 +87,7 @@ readdisklabel(dev, strat, lp)
 	else
 		{
 		dlp = (struct disklabel *)mapin(bp);
-		if	(dlp->d_magic != DISKMAGIC || 
+		if	(dlp->d_magic != DISKMAGIC ||
 				dlp->d_magic2 != DISKMAGIC)
 			{
 			if	(msg == NULL)
@@ -141,8 +141,8 @@ setdisklabel(olp, nlp, openmask)
 			npp->p_frag = opp->p_frag;
 		}
 	}
- 	nlp->d_checksum = 0;
- 	nlp->d_checksum = dkcksum(nlp);
+	nlp->d_checksum = 0;
+	nlp->d_checksum = dkcksum(nlp);
 	bcopy(nlp, olp, sizeof (struct disklabel));
 	return (0);
 }
@@ -214,8 +214,8 @@ dkcksum(lp)
  * This is new for 2.11BSD.  It is a common routine that checks for
  * opening a partition that overlaps other currently open partitions.
  *
- * NOTE: if 'c' is not the entire drive (as is the case with the old, 
- * nonstandard, haphazard and overlapping partition tables) the warning 
+ * NOTE: if 'c' is not the entire drive (as is the case with the old,
+ * nonstandard, haphazard and overlapping partition tables) the warning
  * message will be erroneously issued in some valid situations.
 */
 
@@ -296,9 +296,9 @@ ioctldisklabel(dev, cmd, data, flag, disk, strat)
  * NOTE: the label address is the external click address!
 */
 		case	DIOCGPART:
-			((struct partinfo *)data)->disklab = 
+			((struct partinfo *)data)->disklab =
 					(struct disklabel *)disk->dk_label;
-			((struct partinfo *)data)->part = 
+			((struct partinfo *)data)->part =
 						&disk->dk_parts[dkpart(dev)];
 			return(0);
 		case	DIOCWLABEL:
@@ -325,7 +325,7 @@ ioctldisklabel(dev, cmd, data, flag, disk, strat)
 				mapseg5(disk->dk_label, LABELDESC);
 				bcopy(lp,(struct disklabel *)SEG5,sizeof (*lp));
 				normalseg5();
-				bcopy(&lp->d_partitions, &disk->dk_parts, 
+				bcopy(&lp->d_partitions, &disk->dk_parts,
 					sizeof (lp->d_partitions));
 				}
 			return(error);
@@ -344,7 +344,7 @@ ioctldisklabel(dev, cmd, data, flag, disk, strat)
 			mapseg5(disk->dk_label, LABELDESC);
 			bcopy(lp,(struct disklabel *)SEG5,sizeof (*lp));
 			normalseg5();
-			bcopy(&lp->d_partitions, &disk->dk_parts, 
+			bcopy(&lp->d_partitions, &disk->dk_parts,
 				sizeof (lp->d_partitions));
 
 /*
@@ -386,7 +386,7 @@ partition_check(bp, dk)
 		if	(sz == 0)
 			{
 			bp->b_resid = bp->b_bcount;
-			goto done;	
+			goto done;
 			}
 		/* or truncate if part of it fits */
 		if	(sz < 0)

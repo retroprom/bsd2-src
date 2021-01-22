@@ -243,7 +243,7 @@ soconnect(so, nam)
 */
 	if	(!error)
 		{
-		if	((so->so_state & SS_NBIO) &&	
+		if	((so->so_state & SS_NBIO) &&
 			 (so->so_state & SS_ISCONNECTING))
 			error = EINPROGRESS;
 		}
