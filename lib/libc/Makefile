@@ -15,7 +15,7 @@
 #
 # Compatibility routines are kept in directories with a prefixing
 # ``compat'' (so they all sort together).
-# 
+#
 # The C run-time startup code is always machine dependent and expected
 # to be located in ${MACHINE}/csu
 #
@@ -33,8 +33,8 @@
 # There are two possible methods of doing host name look up.  They are
 # to use the name server or /etc/hosts. HOSTLOOKUP defines which method
 # is to be compiled into libc  :
-#								     
-#	defining HOSTLOOKUP to be "named", compiles the         
+#
+#	defining HOSTLOOKUP to be "named", compiles the
 #	host lookup routines that use the BIND name server.
 #
 #	defining HOSTLOOKUP to be "hosttable", compiles
@@ -45,7 +45,7 @@ HOSTLOOKUP=	named
 
 DESTDIR=
 INSTALL=install -m 644
-DFLMON=	mon.o
+DFLMON=mon.o
 MACHINE=pdp
 DEFS=
 COMPAT=	compat-4.1 compat-sys5 compat-43
