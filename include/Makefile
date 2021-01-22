@@ -34,7 +34,7 @@ TAGSFILE=tags
 
 all:
 
-install: ${SHARED}
+install: mkdirs ${SHARED}
 	-for i in ${STD}; do \
 		cmp -s $$i ${DESTDIR}/usr/include/$$i || \
 		    install -c -m 444 $$i ${DESTDIR}/usr/include/$$i; \
@@ -60,7 +60,7 @@ install: ${SHARED}
 	rm -f ${DESTDIR}/usr/include/frame.h
 	ln -s machine/frame.h ${DESTDIR}/usr/include/frame.h
 
-symlinks:
+symlinks: mkdirs
 	-for i in ${SYSDIRS}; do \
 		rm -rf ${DESTDIR}/usr/include/$$i; \
 		if [ ! -s ${DESTDIR}/usr/include/$$i ]; \
@@ -78,16 +78,19 @@ symlinks:
 		echo ${DESTDIR}/usr/include/sys not removed; \
 	fi
 
-copies:
+copies: mkdirs
 	-for i in ${SYSDIRS}; do \
 		rm -rf ${DESTDIR}/usr/include/$$i; \
 		cd /sys; \
 		tar cf - $$i/*.h | (cd ${DESTDIR}/usr/include; tar xpfB -); \
 	done
 	rm -rf ${DESTDIR}/usr/include/sys;
-	mkdir ${DESTDIR}/usr/include/sys; 
+	mkdir -p ${DESTDIR}/usr/include/sys;
 	chmod 775 ${DESTDIR}/usr/include/sys;
 	-(cd /sys/h; tar cf - *.h | (cd ${DESTDIR}/usr/include/sys; tar xpfB -))
+
+mkdirs:
+	mkdir -p ${DESTDIR}/usr/include
 
 tags:
 	cwd=/usr/include; \
