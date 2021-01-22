@@ -32,6 +32,9 @@ if [ "${ramd_enable}" = yes -a "${ramd_size}" = 0 ]; then
 	ramd_enable=no
 fi
 if [ "${ramd_enable}" = yes ]; then
+	# Try to unmount in case it was mounted
+	umount "${ramd_mount}"
+	# Now do the actual formatting
 	echo 'Formatting ram disk.'			>/dev/console 2>&1
 	mkfs -s "${ramd_size}" -i 1024 -m 2 -n 1 /dev/ram
 fi
