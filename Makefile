@@ -45,7 +45,7 @@ SRC_MFLAGS=
 # 'share' has to be towards the front of the list because programs such as
 # lint(1) need their data files, etc installed first.
 
-LIBDIR= lib usr.lib
+LIBDIR= include lib usr.lib
 SRCDIR=	share bin sbin etc games libexec local new ucb usr.bin usr.sbin man
 
 all:	${LIBDIR} ${SRCDIR}
@@ -62,6 +62,9 @@ build: buildlib ${SRCDIR} FRC
 buildsrc: ${SRCDIR} FRC
 
 buildlib: FRC
+	@echo installing includes
+	cd include; make ${MFLAGS} DESTDIR=${DESTDIR} install
+	@echo
 	@echo compiling libc.a
 	cd lib/libc; make ${MFLAGS} ${LIBCDEFS}
 	@echo installing /lib/libc.a
@@ -114,7 +117,7 @@ installsrc:
 	done
 
 tags:
-	for i in lib usr.lib; do \
+	for i in include lib usr.lib; do \
 		(cd $$i; make ${MFLAGS} TAGSFILE=../tags tags); \
 	done
 	sort -u +0 -1 -o tags tags
