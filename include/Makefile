@@ -21,7 +21,7 @@ SUBDIRS=arpa pascal protocols OLD
 STD=	a.out.h ar.h assert.h ctype.h curses.h disktab.h fcntl.h \
 	fstab.h grp.h lastlog.h math.h memory.h mp.h mtab.h ndbm.h \
 	netdb.h nlist.h pcc.h pwd.h ranlib.h resolv.h setjmp.h \
-	sgtty.h short_names.h stab.h stdio.h string.h strings.h \
+	sgtty.h stab.h stdio.h string.h strings.h \
 	struct.h syscall.h sysexits.h time.h ttyent.h tzfile.h utmp.h \
 	varargs.h vfont.h vmf.h
 LINKS=	errno.h signal.h syslog.h
