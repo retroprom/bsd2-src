@@ -38,7 +38,7 @@ LIBCDEFS= DFLMON=${DFLMON} DEFS="${DEFS}"
 #
 DESTDIR=
 CFLAGS=	-O
-SRC_MFLAGS = -k
+SRC_MFLAGS=
 
 # Programs that live in subdirectories, and have makefiles of their own.
 #
