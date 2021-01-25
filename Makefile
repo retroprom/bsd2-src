@@ -11,14 +11,14 @@
 # The `make build' will compile and install the libraries
 # before building the rest of the sources. The `make installsrc'
 # will then install the remaining binaries.
-# 
+#
 # It can also be run in the more conventional way:
 #	make
 #	make install
 # The `make' will compile everything without installing anything.
 # The `make install' will then install everything. Note however
 # that all the binaries will have been loaded with the old libraries.
-#
+
 # C library options: passed to libc makefile.
 # See lib/libc/Makefile for explanation.
 # NOTE: The method of hostname lookup (hosts file or nameserver) is no
@@ -45,22 +45,33 @@ SRC_MFLAGS=
 # 'share' has to be towards the front of the list because programs such as
 # lint(1) need their data files, etc installed first.
 
-LIBDIR= include lib usr.lib
+LIBDIR=	include lib usr.lib
 SRCDIR=	share bin sbin etc games libexec local new ucb usr.bin usr.sbin man
 
+# all - Build everything without concern for bootstrap
+#
 all:	${LIBDIR} ${SRCDIR}
 
 lib:	FRC
 	cd lib/libc; make ${MFLAGS} ${LIBCDEFS}
 	cd lib; make ${MFLAGS} ccom cpp c2
 
-usr.lib ${SRCDIR}: FRC
-	cd $@; make ${MFLAGS} ${SRC_MFLAGS}
+# build - Main build target
+#
+# This target performs a standard system build. The toolchain is built
+# and installed first. After that the rest of the system is built.
+#
+build: buildlib buildsrc FRC
 
-build: buildlib ${SRCDIR} FRC
-
-buildsrc: ${SRCDIR} FRC
-
+# buildlib - Toolchain bootstrap
+#
+# The following procedure builds and installs the toolchain. Everything is
+# built two times so that the C compiler is linked against the new libc.
+#
+# The initial build order for the compiler is important for compatibility
+# with host systems below patch #460 because this patch modernizes the
+# compiler and requires a specific bootstrap procedure.
+#
 buildlib: FRC
 	@echo installing includes
 	cd include; make ${MFLAGS} DESTDIR=${DESTDIR} install
@@ -102,26 +113,45 @@ buildlib: FRC
 	@echo installing /usr/lib
 	cd usr.lib; make ${MFLAGS} DESTDIR=${DESTDIR} install
 
-FRC:
+# buildsrc - Main system build
+#
+# This rule builds the base system including contributed components.
+#
+buildsrc: ${SRCDIR} FRC
 
+# Rule for building each subdirectory
+#
+${SRCDIR}: FRC
+	cd $@; make ${MFLAGS}
+
+# install - Install the entire world
+#
 install:
 	-for i in ${LIBDIR} ${SRCDIR}; do \
 		(cd $$i; \
 		make ${MFLAGS} DESTDIR=${DESTDIR} install); \
 	done
 
+# installsrc - Install everything except for the toolchain
+#
 installsrc:
 	-for i in ${SRCDIR}; do \
 		(cd $$i; \
 		make ${MFLAGS} DESTDIR=${DESTDIR} install); \
 	done
 
+# tags - Update runtime tags file
+#
 tags:
-	for i in include lib usr.lib; do \
+	for i in ${LIBDIR}; do \
 		(cd $$i; make ${MFLAGS} TAGSFILE=../tags tags); \
 	done
 	sort -u +0 -1 -o tags tags
 
+# clean - Remove build output
+#
 clean:
 	rm -f a.out core *.s *.o
 	for i in ${LIBDIR} ${SRCDIR}; do (cd $$i; make -k ${MFLAGS} clean); done
+
+FRC:
