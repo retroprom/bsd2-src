@@ -52,7 +52,7 @@ COMPAT=	compat-4.1 compat-sys5 compat-43
 ALL=	gen inet net ns stdio stdlib string ${MACHINE} ${COMPAT}
 TAGSFILE=tags
 
-libc.a libc_p.a: ${MACHINE}/csu ${ALL} net/${HOSTLOOKUP}
+libc.a libc_p.a: subdirs
 	rm -rf tmp
 	mkdir tmp
 	cd tmp; \
@@ -77,8 +77,11 @@ libc.a libc_p.a: ${MACHINE}/csu ${ALL} net/${HOSTLOOKUP}
 	ar ma doprnt.o libc_p.a ffltpr.o
 	rm -rf tmp
 
-${ALL} net/${HOSTLOOKUP} ${MACHINE}/csu: FRC
-	cd $@; make ${MFLAGS} DEFS=${DEFS} HOSTLOOKUP=${HOSTLOOKUP}
+subdirs: FRC
+	for i in ${ALL} net/${HOSTLOOKUP} ${MACHINE}/csu; do \
+		(cd $$i && make ${MFLAGS} \
+			DEFS=${DEFS} HOSTLOOKUP=${HOSTLOOKUP}) \
+	done
 
 FRC:
 
