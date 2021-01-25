@@ -7,17 +7,18 @@
  */
 
 /*
- * The structures header and dispatch define the format of a font file.
+ * Font data structures for Benson-Varian and Versatec plotters.
  *
- * See vfont(5) for more details.
+ * See vfont(5) for details.
  */
+
 struct header {
 	short magic;
 	unsigned short size;
 	short maxx;
 	short maxy;
 	short xtend;
-}; 
+};
 
 struct dispatch {
 	unsigned short addr;
