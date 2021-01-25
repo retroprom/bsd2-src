@@ -40,10 +40,7 @@ install: mkdirs ${SHARED}
 		    install -c -m 444 $$i ${DESTDIR}/usr/include/$$i; \
 	done
 	-for i in ${SUBDIRS}; do \
-		if [ ! -d ${DESTDIR}/usr/include/$$i ]; \
-		then \
-			mkdir ${DESTDIR}/usr/include/$$i; \
-		fi; \
+		mkdir -p ${DESTDIR}/usr/include/$$i; \
 		(cd $$i; for j in *.[ih]; do \
 			cmp -s $$j ${DESTDIR}/usr/include/$$i/$$j || \
 			install -c -m 444 $$j ${DESTDIR}/usr/include/$$i/$$j; \
@@ -90,9 +87,8 @@ copies: mkdirs
 	-(cd /sys/h; tar cf - *.h | (cd ${DESTDIR}/usr/include/sys; tar xpfB -))
 
 mkdirs:
-	-if [ ! -d ${DESTDIR}/usr/include ]; then \
-		mkdir -p ${DESTDIR}/usr/include; \
-	fi
+	-mkdir -p ${DESTDIR}/usr/include
+	-mkdir -p ${DESTDIR}/usr/include/sys
 
 tags:
 	cwd=/usr/include; \

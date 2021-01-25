@@ -44,8 +44,8 @@ aux/syslog:
 	-cd aux; make ${MFLAGS} syslog
 
 $(DESTDIR)/usr/spool/mqueue:
-	-mkdir			$(DESTDIR)/usr/spool/mqueue
-	-chmod	777		$(DESTDIR)/usr/spool/mqueue
+	-mkdir -p		$(DESTDIR)/usr/spool/mqueue
+	-chmod 777		$(DESTDIR)/usr/spool/mqueue
 
 clean:
 	-cd src; make ${MFLAGS} clean

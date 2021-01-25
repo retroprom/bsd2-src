@@ -100,7 +100,7 @@ phant.help:	phant.nr
 install:	all phantasia.0
 	rm -f ${DESTDIR}/usr/games/phantasia
 	ln -s lib/phantasia/phantasia ${DESTDIR}/usr/games/phantasia
-	-mkdir ${DESTDIR}${DEST}
+	-mkdir -p ${DESTDIR}${DEST}
 	cp phantasia monsters phant.help ${DESTDIR}${DEST}
 	chmod 755 ${DESTDIR}${DEST}
 	chmod 4711 ${DESTDIR}${DEST}/phantasia

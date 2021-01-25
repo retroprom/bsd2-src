@@ -22,10 +22,7 @@ MISC = 	summary.extern test.accent test.umlaut
 all: revisions $(SRCS)
 
 install: revisions $(SRCS)
-	-if [ ! -d ${DESTDIR}${LIB} ]; then \
-		rm -f ${DESTDIR}${LIB}; \
-		mkdir ${DESTDIR}${LIB}; \
-	fi
+	-mkdir -p ${DESTDIR}${LIB}
 	-for i in ${SRCS}; do \
 		sed -e '/%beginstrip%/{' \
 		    -e 'h' \

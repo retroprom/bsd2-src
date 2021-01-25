@@ -71,7 +71,7 @@ print2: $(PRINTS)
 install: $(PROGS) cxref.0
 # don't remove my bin!
 	rm -f ${BIN}/cxref
-	-mkdir $(LIB)
+	-mkdir -p $(LIB)
 	install -s $(CXREF) ${BIN}/$(CXREF)
 	install -s docxref  $(LIB)/docxref
 	install -s fmtxref  $(LIB)/fmtxref

@@ -139,8 +139,7 @@ install: a.out exrecover expreserve
 	chmod 1755 ${DESTDIR}/${BINDIR}/ex
 	install -s -o root -m 4755 exrecover ${DESTDIR}/${SBINDIR}/exrecover
 	install -s -o root -m 4755 expreserve ${DESTDIR}/${SBINDIR}/expreserve
-# The following line normally fails.  This is OK.
-	-mkdir ${DESTDIR}/usr/preserve
+	-mkdir -p ${DESTDIR}/usr/preserve
 
 lint:
 	lint ${CFLAGS} ex.c ex_?*.c

@@ -25,7 +25,7 @@ depend: FRC
 	for i in ${SUBDIR}; do (cd $$i; make ${MFLAGS} depend); done
 
 install: FRC
-	-mkdir ${DESTDIR}/usr/spool/mqueue
+	-mkdir -p ${DESTDIR}/usr/spool/mqueue
 	chown root.wheel ${DESTDIR}/usr/spool/mqueue
 	chmod 775 ${DESTDIR}/usr/spool/mqueue
 	for i in ${SUBDIR}; do (cd $$i; make ${MFLAGS} install); done

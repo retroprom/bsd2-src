@@ -12,7 +12,8 @@ ALL=	crt gen net stdio sys ${COMPAT}
 TAGSFILE=tags
 
 pdplib pdplib_p: ${ALL}
-	-mkdir tmp
+	rm -rf tmp
+	mkdir tmp
 	for i in ${ALL}; do (cd tmp; ar x ../$$i/$${i}lib); done
 	ar cr pdplib `ls tmp/*.o | sort -t/ +1`
 	rm -f tmp/*

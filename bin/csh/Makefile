@@ -86,7 +86,7 @@ vprint:
 
 vgrind:
 	@cp /dev/null index
-	@-mkdir grind
+	-mkdir -p grind
 	for i in *.h; do ${VGRIND} -t -h "C Shell" $$i >grind/$$i.t; done
 	for i in *.c; do ${VGRIND} -t -h "C Shell" $$i >grind/$$i.t; done
 	${VGRIND} -t -x -h Index index >grind/index.t

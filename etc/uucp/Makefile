@@ -19,7 +19,7 @@ all install depend lint clean tags:
 
 distribution:
 	-rm -rf ${DESTDIR}/etc/uucp
-	mkdir ${DESTDIR}/etc/uucp
+	-mkdir -p ${DESTDIR}/etc/uucp
 	chown uucp.daemon ${DESTDIR}/etc/uucp
 	chmod 755 ${DESTDIR}/etc/uucp
 	install -c -o ${OWN} -g ${GRP} -m 644 ${FILES} ${DESTDIR}/etc/uucp

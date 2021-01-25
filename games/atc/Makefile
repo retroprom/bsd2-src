@@ -28,7 +28,7 @@ depend: lex.c grammar.c FRC
 	mkdep ${CFLAGS} ${SRCS}
 
 install: FRC
-	-[ -d ${DESTDIR}/usr/games/lib/atc ] || mkdir ${DESTDIR}/usr/games/lib/atc
+	-mkdir -p ${DESTDIR}/usr/games/lib/atc
 	chmod 700 ${DESTDIR}/usr/games/lib/atc
 	chown games.bin ${DESTDIR}/usr/games/lib/atc
 	(cd games; install -c -o games -g bin -m 600 * ${DESTDIR}/usr/games/lib/atc)

@@ -52,7 +52,7 @@ ALL=		${INSTALL} ${UTILS} ${ERRORSTRINGS}
 all: ${TEMPDIR} ${ALL}
 
 tmp:
-	-mkdir tmp
+	-mkdir -p tmp
 
 .c.o:
 	rm -f ${TEMPDIR}/$*.c
