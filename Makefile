@@ -107,13 +107,13 @@ FRC:
 install:
 	-for i in ${LIBDIR} ${SRCDIR}; do \
 		(cd $$i; \
-		make ${MFLAGS} ${SRC_MFLAGS} DESTDIR=${DESTDIR} install); \
+		make ${MFLAGS} DESTDIR=${DESTDIR} install); \
 	done
 
 installsrc:
 	-for i in ${SRCDIR}; do \
 		(cd $$i; \
-		make ${MFLAGS} ${SRC_MFLAGS} DESTDIR=${DESTDIR} install); \
+		make ${MFLAGS} DESTDIR=${DESTDIR} install); \
 	done
 
 tags:
