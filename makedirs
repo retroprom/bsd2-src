@@ -1,0 +1,86 @@
+#!/bin/sh
+
+# Check destdir
+if [ -z "$1" ]; then
+	echo "Usage: $0 destdir"
+	exit 1
+fi
+
+# Tell the user what's happening
+echo "Creating directory structure in $1"
+
+# root
+mkdir -p \
+	$1 \
+	$1/dev \
+	$1/etc \
+	$1/bin \
+	$1/sbin \
+	$1/lib
+
+# /var
+mkdir -p \
+	$1/var \
+	$1/var/cron \
+	$1/var/cron/tabs \
+	$1/var/db \
+	$1/var/run \
+	$1/var/log
+
+# /usr
+mkdir -p \
+	$1/usr/bin \
+	$1/usr/include \
+	$1/usr/lib \
+	$1/usr/libexec \
+	$1/usr/man \
+	$1/usr/sbin \
+	$1/usr/share
+mkdir -p \
+	$1/usr/adm \
+	$1/usr/spool \
+	$1/usr/tmp
+mkdir -p \
+	$1/usr/dict \
+	$1/usr/games \
+	$1/usr/games/lib \
+	$1/usr/old \
+	$1/usr/ucb
+mkdir -p \
+	$1/usr/man/cat1 \
+	$1/usr/man/cat2 \
+	$1/usr/man/cat3 \
+	$1/usr/man/cat3f \
+	$1/usr/man/cat4 \
+	$1/usr/man/cat5 \
+	$1/usr/man/cat6 \
+	$1/usr/man/cat7 \
+	$1/usr/man/cat8
+
+# /usr/local
+mkdir -p \
+	$1/usr/local \
+	$1/usr/local/lib \
+	$1/usr/local/man \
+	$1/usr/local/man/cat1 \
+	$1/usr/local/man/cat2 \
+	$1/usr/local/man/cat3 \
+	$1/usr/local/man/cat4 \
+	$1/usr/local/man/cat5 \
+	$1/usr/local/man/cat6 \
+	$1/usr/local/man/cat7 \
+	$1/usr/local/man/cat8 \
+
+# /usr/new
+mkdir -p \
+	$1/usr/new \
+	$1/usr/new/lib \
+	$1/usr/new/man \
+	$1/usr/new/man/cat1 \
+	$1/usr/new/man/cat2 \
+	$1/usr/new/man/cat3 \
+	$1/usr/new/man/cat4 \
+	$1/usr/new/man/cat5 \
+	$1/usr/new/man/cat6 \
+	$1/usr/new/man/cat7 \
+	$1/usr/new/man/cat8
