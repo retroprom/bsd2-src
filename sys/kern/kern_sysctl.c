@@ -273,6 +273,8 @@ kern_sysctl(name, namelen, oldp, oldlenp, newp, newlen)
 	case KERN_POSIX1:
 	case KERN_SAVED_IDS:
 		return (sysctl_rdint(oldp, oldlenp, newp, 0));
+	case KERN_RAMDBLOCKS:
+		return (sysctl_rdint(oldp, oldlenp, newp, NRAM));
 	default:
 		return (EOPNOTSUPP);
 	}

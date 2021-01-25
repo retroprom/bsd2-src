@@ -136,7 +136,8 @@ struct ctlname {
 #define	KERN_MAXTEXTS		22	/* int: # of text entries */
 #define	KERN_TEXT		23	/* struct: text entries */
 #define	KERN_ACCTTHRESH		24	/* int: accounting daemon threshold */
-#define	KERN_MAXID		25	/* number of valid kern ids */
+#define KERN_RAMDBLOCKS		25	/* int: size of ram disk in blocks */
+#define	KERN_MAXID		26	/* number of valid kern ids */
 
 #ifndef	KERNEL
 #define CTL_KERN_NAMES { \
@@ -165,6 +166,7 @@ struct ctlname {
 	{ "maxtexts", CTLTYPE_INT }, \
 	{ "text", CTLTYPE_STRUCT }, \
 	{ "acctthresh", CTLTYPE_INT }, \
+	{ "ramdblocks", CTLTYPE_INT }, \
 }
 #endif
 
