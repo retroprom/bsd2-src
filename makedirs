@@ -39,6 +39,7 @@ mkdir -p \
 mkdir -p \
 	$1/usr/adm \
 	$1/usr/spool \
+	$1/usr/spool/mqueue \
 	$1/usr/tmp
 mkdir -p \
 	$1/usr/dict \
