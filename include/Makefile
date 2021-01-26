@@ -82,7 +82,7 @@ copies: mkdirs
 		tar cf - $$i/*.h | (cd ${DESTDIR}/usr/include; tar xpfB -); \
 	done
 	rm -rf ${DESTDIR}/usr/include/sys
-	mkdir ${DESTDIR}/usr/include/sys 
+	-mkdir -p ${DESTDIR}/usr/include/sys
 	chmod 775 ${DESTDIR}/usr/include/sys
 	-(cd /sys/sys; tar cf - *.h | (cd ${DESTDIR}/usr/include/sys; tar xpfB -))
 
