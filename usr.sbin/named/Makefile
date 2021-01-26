@@ -27,7 +27,7 @@ clean: FRC
 	done
 
 install: all
-	(cd named; make ${MFLAGS} install);
-	(cd tools; make ${MFLAGS} install);
+	(cd named; make ${MFLAGS} DESTDIR=${DESTDIR} install);
+	(cd tools; make ${MFLAGS} DESTDIR=${DESTDIR} install);
 
 FRC:
