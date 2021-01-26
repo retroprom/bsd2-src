@@ -18,4 +18,8 @@ clean :
 	rm -f *.o cpp
 
 install : cpp
+	-mv ${DESTDIR}${LIB}/cpp ${DESTDIR}${LIB}/cpp.old
 	install -s -m 755 -o root -g wheel cpp $(DESTDIR)/lib
+
+restore:
+	mv ${DESTDIR}${LIB}/cpp.old ${DESTDIR}${LIB}/cpp

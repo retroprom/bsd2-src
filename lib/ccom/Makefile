@@ -28,14 +28,14 @@ cvopt:	cvopt.c
 	${CC} -n -s -O -o cvopt cvopt.c
 
 install: c0 c1
-	-mv ${DESTDIR}${LIB}/c0 ${DESTDIR}${LIB}/oc0
-	-mv ${DESTDIR}${LIB}/c1 ${DESTDIR}${LIB}/oc1
+	-mv ${DESTDIR}${LIB}/c0 ${DESTDIR}${LIB}/c0.old
+	-mv ${DESTDIR}${LIB}/c1 ${DESTDIR}${LIB}/c1.old
 	install -s c0 ${DESTDIR}${LIB}/c0
 	install -s c1 ${DESTDIR}${LIB}/c1
 
 restore:
-	mv ${DESTDIR}${LIB}/oc0 ${DESTDIR}${LIB}/c0
-	mv ${DESTDIR}${LIB}/oc1 ${DESTDIR}${LIB}/c1
+	mv ${DESTDIR}${LIB}/c0.old ${DESTDIR}${LIB}/c0
+	mv ${DESTDIR}${LIB}/c1.old ${DESTDIR}${LIB}/c1
 
 lint:
 	lint -haxc -I. c0?.c > lint.c0
