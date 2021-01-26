@@ -18,18 +18,7 @@
 # The `make' will compile everything without installing anything.
 # The `make install' will then install everything. Note however
 # that all the binaries will have been loaded with the old libraries.
-
-# C library options: passed to libc makefile.
-# See lib/libc/Makefile for explanation.
-# NOTE: The method of hostname lookup (hosts file or nameserver) is no
-#	longer selected here.  Make sure to edit lib/libc/Makefile to set
-#	HOSTLOOKUP
-# DFLMON must be either mon.o or gmon.o.
-# DEFS may include -DLIBC_SCCS, -DSYSLIBC_SCCS, both, or neither.
 #
-DFLMON=mon.o
-DEFS=
-LIBCDEFS= DFLMON=${DFLMON} DEFS="${DEFS}"
 
 # global flags
 # SRC_MFLAGS are used on makes in command source directories,
@@ -50,11 +39,7 @@ SRCDIR=	share bin sbin etc games libexec local new ucb usr.bin usr.sbin man
 
 # all - Build everything without concern for bootstrap
 #
-all:	${LIBDIR} ${SRCDIR}
-
-lib:	FRC
-	cd lib/libc; make ${MFLAGS} ${LIBCDEFS}
-	cd lib; make ${MFLAGS} ccom cpp c2
+all: ${LIBDIR} ${SRCDIR}
 
 # build - Main build target
 #
@@ -77,7 +62,7 @@ buildlib: FRC
 	cd include; make ${MFLAGS} DESTDIR=${DESTDIR} install
 	@echo
 	@echo compiling libc.a
-	cd lib/libc; make ${MFLAGS} ${LIBCDEFS}
+	cd lib/libc; make ${MFLAGS}
 	@echo installing /lib/libc.a
 	cd lib/libc; make ${MFLAGS} DESTDIR=${DESTDIR} install
 	@echo
@@ -97,7 +82,7 @@ buildlib: FRC
 	cd lib; make ${MFLAGS} clean
 	@echo
 	@echo re-compiling libc.a
-	cd lib/libc; make ${MFLAGS} ${LIBCDEFS}
+	cd lib/libc; make ${MFLAGS}
 	@echo re-installing /lib/libc.a
 	cd lib/libc; make ${MFLAGS} DESTDIR=${DESTDIR} install
 	@echo
@@ -118,11 +103,6 @@ buildlib: FRC
 # This rule builds the base system including contributed components.
 #
 buildsrc: ${SRCDIR} FRC
-
-# Rule for building each subdirectory
-#
-${SRCDIR}: FRC
-	cd $@; make ${MFLAGS}
 
 # install - Install the entire world
 #
@@ -153,5 +133,10 @@ tags:
 clean:
 	rm -f a.out core *.s *.o
 	for i in ${LIBDIR} ${SRCDIR}; do (cd $$i; make -k ${MFLAGS} clean); done
+
+# Rule for building subdirectories
+#
+${LIBDIR} ${SRCDIR}: FRC
+	cd $@; make ${MFLAGS}
 
 FRC:
