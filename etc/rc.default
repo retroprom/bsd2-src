@@ -13,6 +13,10 @@ ramd_owner=root
 ramd_group=wheel
 ramd_mode=1777
 
+# File systems
+fsck_force=no
+fsck_scratch=/tmp/_FSCK_SCRATCH
+
 # Network configuration
 inet_enable=no
 inet_gateway=
