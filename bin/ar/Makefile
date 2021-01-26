@@ -24,7 +24,7 @@ ar.1.0: ar.1
 ar.5.0: ar.5.5
 	nroff -man ar.5.5 > ar.5.0
 
-install:
+install: all
 	install -s -m 755 ar ${DESTDIR}/bin/ar
 	install -c -o bin -g bin -m 444 ar.1.0 ${DESTDIR}/usr/man/cat1/ar.0
 	install -c -o bin -g bin -m 444 ar.5.0 ${DESTDIR}/usr/man/cat5/ar.0
