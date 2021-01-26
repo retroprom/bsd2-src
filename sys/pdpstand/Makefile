@@ -109,9 +109,9 @@ ${DUMP}:
 dump:
 	dump 0f ${DUMP} /dev/r${DISK}
 
-install: boot
+install: boot toyset
 	install -s boot ${ROOT}/
-
+	install -s toyset ${ROOT}/
 
 libsa.a: ${DRIVERS}
 	ar rv $@ $?
