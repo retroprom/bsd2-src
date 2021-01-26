@@ -32,6 +32,9 @@
 #include "quota.h"
 #endif
 
+/* Get NRAM */
+#include "ram.h"
+
 int	netoff = 1;
 int	cmask = CMASK;
 int	securelevel;
@@ -232,7 +235,7 @@ main()
 	maxmem = MAXMEM;
 	printf("user mem  = %D\n", ctob((long)MAXMEM));
 #if NRAM > 0
-	printf("ram disk  = %D\n", ctob((long)ramsize));
+	printf("ram disk  = %D\n", NRAM * 2);
 #endif
 	printf("\n");
 

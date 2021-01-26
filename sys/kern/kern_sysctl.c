@@ -58,6 +58,9 @@
 #include <machine/cpu.h>
 #include <conf.h>
 
+/* Get NRAM */
+#include "ram.h"
+
 sysctlfn kern_sysctl;
 sysctlfn hw_sysctl;
 #ifdef DEBUG
