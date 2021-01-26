@@ -26,16 +26,16 @@
 # for use in compiling everything else.
 #
 DESTDIR=
-CFLAGS=	-O
+CFLAGS=-O
 SRC_MFLAGS=
 
 # Programs that live in subdirectories, and have makefiles of their own.
 #
 # 'share' has to be towards the front of the list because programs such as
 # lint(1) need their data files, etc installed first.
-
-LIBDIR=	include lib usr.lib
-SRCDIR=	share bin sbin etc games libexec local new ucb usr.bin usr.sbin man
+#
+LIBDIR=include lib usr.lib
+SRCDIR=share bin sbin etc games libexec local new ucb usr.bin usr.sbin man
 
 # all - Build everything without concern for bootstrap
 #
@@ -100,8 +100,6 @@ buildlib: FRC
 
 # buildsrc - Main system build
 #
-# This rule builds the base system including contributed components.
-#
 buildsrc: ${SRCDIR} FRC
 
 # install - Install the entire world
@@ -139,4 +137,5 @@ clean:
 ${LIBDIR} ${SRCDIR}: FRC
 	cd $@; make ${MFLAGS}
 
+# Dummy rule
 FRC:
