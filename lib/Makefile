@@ -20,7 +20,7 @@ ${SUBDIR}: FRC
 	cd $@; make SEPFLAG=${SEPFLAG} ${MFLAGS}
 
 FRC:
-	
+
 install:
 	-for i in ${SUBDIR}; do \
 		(cd $$i; make SEPFLAG=${SEPFLAG} ${MFLAGS} \
