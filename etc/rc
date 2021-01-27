@@ -97,10 +97,18 @@ fi
 echo 'Mounting all file systems.'			>/dev/console 2>&1
 mount -a						>/dev/console 2>&1
 
-# Initialize disk quotas
-echo 'Checking quotas.'					>/dev/console 2>&1
-quotacheck -a						>/dev/console 2>&1
-quotaon -a
+# Clean tmp directory
+echo 'Cleaning temporary files.'			>/dev/console 2>&1
+(cd /tmp; find . ! -name . ! -name lost+found ! -name quotas -exec rm -r {} \; )
+
+# Clean up tty permissions
+echo 'Cleaning tty permissions.'			>/dev/console 2>&1
+chmod 666 /dev/tty[pqrs]*
+
+# Clean up uucp files
+echo 'Cleaning uucp locks.'				>/dev/console 2>&1
+rm -f /usr/spool/uucp/LCK.*
+rm -f /usr/spool/uucp/STST/*
 
 # Update the device database
 echo 'Updating device database.'			>/dev/console 2>&1
@@ -110,18 +118,10 @@ dev_mkdb
 echo 'Updating process database.'			>/dev/console 2>&1
 ps -U							>/dev/console 2>&1
 
-# Clean up tty permissions
-echo 'Cleaning tty permissions.'			>/dev/console 2>&1
-chmod 666 /dev/tty[pqrs]*
-
-# Allow logins
-echo 'Logins are now allowed.'				>/dev/console 2>&1
-rm -f /etc/nologin
-
-# Clean up uucp files
-echo 'Cleaning uucp locks.'				>/dev/console 2>&1
-rm -f /usr/spool/uucp/LCK.*
-rm -f /usr/spool/uucp/STST/*
+# Initialize disk quotas
+echo 'Checking quotas.'					>/dev/console 2>&1
+quotacheck -a						>/dev/console 2>&1
+quotaon -a
 
 # Initialize networking
 . /etc/rc.network
@@ -139,6 +139,10 @@ if [ -d /etc/crash ]; then
 	savecore /etc/crash				>/dev/console 2>&1
 fi
 
+# Check editor recovery
+echo 'Checking for editor recovery.'			>/dev/console 2>&1
+(cd /tmp; /usr/sbin/expreserve -a)
+
 # Warn about ongoing vipw sessions
 if [ -s /etc/ptmp ]; then
 	echo ''						>/dev/console 2>&1
@@ -146,13 +150,9 @@ if [ -s /etc/ptmp ]; then
 	echo ''						>/dev/console 2>&1
 fi
 
-# Check editor recovery
-echo 'Checking for editor recovery.'			>/dev/console 2>&1
-(cd /tmp; /usr/sbin/expreserve -a)
-
-# Clean tmp directory
-echo 'Cleaning temporary files.'			>/dev/console 2>&1
-(cd /tmp; find . ! -name . ! -name lost+found ! -name quotas -exec rm -r {} \; )
+# Allow logins
+echo 'Logins are now allowed.'				>/dev/console 2>&1
+rm -f /etc/nologin
 
 # Start daemons
 . /etc/rc.daemons
