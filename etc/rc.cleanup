@@ -1,0 +1,13 @@
+
+# Clean tmp directory
+echo 'Cleaning temporary files.'			>/dev/console 2>&1
+(cd /tmp; find . ! -name . ! -name lost+found ! -name quotas -exec rm -r {} \; )
+
+# Clean up tty permissions
+echo 'Cleaning tty permissions.'			>/dev/console 2>&1
+chmod 666 /dev/tty[pqrs]*
+
+# Clean up uucp files
+echo 'Cleaning uucp locks.'				>/dev/console 2>&1
+rm -f /usr/spool/uucp/LCK.*
+rm -f /usr/spool/uucp/STST/*

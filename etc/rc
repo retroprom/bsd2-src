@@ -31,87 +31,11 @@ if [ "$2" = powerfail ]; then
 	fsck_force=yes
 fi
 
-# Unmount in case we have something mounted
-umount -a
+# Check and mount file systems
+. /etc/rc.filesys
 
-# Initialize the ram disk
-if [ "${ramd_enable}" = yes -a "${ramd_size}" = 0 ]; then
-	echo ''						>/dev/console 2>&1
-	echo 'WARNING - RAM DISK SIZE NOT SPECIFIED'	>/dev/console 2>&1
-	echo ''						>/dev/console 2>&1
-	ramd_enable=no
-fi
-if [ "${ramd_enable}" = yes ]; then
-	echo 'Initializing ram disk.'			>/dev/console 2>&1
-	# Try to unmount in case it was mounted
-	umount "${ramd_mount}"
-	# Clear the disk
-	dd if=/dev/zero of=/dev/ram bs=1024 count="${ramd_size}"
-	# Create a file system
-	mkfs -s "${ramd_size}" -i 1024 -m 2 -n 1 /dev/ram
-	# Mount the file system
-	mount ${ramd_mount}
-	# Set owner and mode
-	chown "${ramd_owner}.${ramd_group}" "${ramd_mount}"
-	chmod "${ramd_mode}"                "${ramd_mount}"
-fi
-
-# Perform file system checks
-if [ "${bootmode}" = fastboot -a "${fsck_always}" != yes ]; then
-	echo 'Fast boot... skipping disk checks.'	>/dev/console 2>&1
-else
-	echo 'Checking file systems.'			>/dev/console 2>&1
-	# Check force flag
-	if [ "${fsck_force}" = yes ]; then
-		_force="-f"
-	else
-		_force=""
-	fi
-	# Perform file system checks
-	fsck -p ${_force} -t "${fsck_scratch}"		>/dev/console 2>&1
-	case $? in
-	0)
-		echo ''					>/dev/console 2>&1
-		date					>/dev/console 2>&1
-		echo ''					>/dev/console 2>&1
-		;;
-	2)
-		exit 1
-		;;
-	4)
-		reboot -n
-		;;
-	8)
-		echo 'Automatic reboot failed... help!'	>/dev/console 2>&1
-		exit 1
-		;;
-	12)
-		echo 'Reboot interrupted'		>/dev/console 2>&1
-		exit 1
-		;;
-	*)
-		echo 'Unknown error in reboot'		>/dev/console 2>&1
-		exit 1
-		;;
-	esac
-fi
-
-# Mount all filesystems marked for automatic mounting
-echo 'Mounting all file systems.'			>/dev/console 2>&1
-mount -a						>/dev/console 2>&1
-
-# Clean tmp directory
-echo 'Cleaning temporary files.'			>/dev/console 2>&1
-(cd /tmp; find . ! -name . ! -name lost+found ! -name quotas -exec rm -r {} \; )
-
-# Clean up tty permissions
-echo 'Cleaning tty permissions.'			>/dev/console 2>&1
-chmod 666 /dev/tty[pqrs]*
-
-# Clean up uucp files
-echo 'Cleaning uucp locks.'				>/dev/console 2>&1
-rm -f /usr/spool/uucp/LCK.*
-rm -f /usr/spool/uucp/STST/*
+# Perform cleanup
+. /etc/rc.cleanup
 
 # Update the device database
 echo 'Updating device database.'			>/dev/console 2>&1
