@@ -33,6 +33,7 @@ sendmail_enable=no
 sendmail_flags=-q1h
 syslogd_enable=yes
 syslogd_flags=
+update_enable=yes
 
 # Network daemons
 inetd_enable=no
