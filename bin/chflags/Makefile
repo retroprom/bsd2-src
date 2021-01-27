@@ -20,12 +20,12 @@ chflags.0: ${MANSRC}
 	/usr/man/manroff ${MANSRC} > ${MAN}
 
 clean:
-	rm -f ${OBJS} ${MAN} chflags tags 
+	rm -f ${OBJS} ${MAN} chflags tags
 
 depend: ${SRCS}
 	mkdep ${CFLAGS} ${SRCS}
 
-install: chflags
+install: chflags ${MAN}
 	install -c -o bin -g bin -m 444 ${MAN} ${DESTDIR}/usr/man/cat1
 	install -s -o root -g bin -m 755 chflags ${DESTDIR}/bin/chflags
 
