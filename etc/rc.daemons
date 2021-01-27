@@ -18,7 +18,7 @@ if [ "${update_enable}" = yes ]; then
 fi
 if [ "${lpd_enable}" = yes ]; then
 	rm -f /dev/printer
-	lpd
+	lpd ${lpd_flags}
 	echo -n ' lpd'					>/dev/console 2>&1
 fi
 if [ "${sendmail_enable}" = yes ]; then
@@ -36,15 +36,15 @@ echo '.'						>/dev/console 2>&1
 if [ ${inet_enable} = yes ]; then
 	echo -n 'Starting network daemons:'		>/dev/console 2>&1
 	if [ "${inetd_enable}" = yes ]; then
-		inetd
+		inetd ${inetd_flags}
 		echo -n ' inetd'			>/dev/console 2>&1
 	fi
 	if [ "${named_enable}" = yes ]; then
-		named
+		named ${named_flags}
 		echo -n ' named'			>/dev/console 2>&1
 	fi
 	if [ "${ntpd_enable}" = yes ]; then
-		ntpd
+		ntpd ${ntpd_flags}
 		echo -n ' ntpd'				>/dev/console 2>&1
 	fi
 	if [ "${rwhod_enable}" = yes ]; then
@@ -52,7 +52,7 @@ if [ ${inet_enable} = yes ]; then
 		echo -n ' rwhod'			>/dev/console 2>&1
 	fi
 	if [ "${timed_enable}" = yes ]; then
-		timed
+		timed ${timed_flags}
 		echo -n ' timed'			>/dev/console 2>&1
 	fi
 	if [ "${routed_enable}" = yes ]; then

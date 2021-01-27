@@ -28,6 +28,7 @@ acct_file=/usr/adm/acct
 acct_flags=
 cron_enable=yes
 lpd_enable=no
+lpd_flags=
 sendmail_enable=no
 sendmail_flags=-q1h
 syslogd_enable=yes
@@ -35,7 +36,11 @@ syslogd_flags=
 
 # Network daemons
 inetd_enable=no
+inetd_flags=
 named_enable=no
+named_flags=
 ntpd_enable=no
+ntpd_flags=
 routed_enable=no
+routed_flags=
 rwhod_enable=no
