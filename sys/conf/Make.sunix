@@ -121,6 +121,9 @@ clean:
 install:
 	install -c -o root -g kmem -m 744 unix ${DESTDIR}/unix
 
+geninstall:
+	install -c -o root -g kmem -m 744 unix ${DESTDIR}/genunix
+
 depend: FRC
 	for i in ${SUB}; do \
 		make -f Make.$$i CFLAGS="${CFLAGS}" depend; done
