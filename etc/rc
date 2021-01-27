@@ -25,6 +25,7 @@ if [ "$2" = powerfail ]; then
 	echo ''						>/dev/console 2>&1
 	echo 'WARNING - REBOOT AFTER POWER FAILURE'	>/dev/console 2>&1
 	echo ''						>/dev/console 2>&1
+	fsck_always=yes
 	fsck_force=yes
 fi
 
