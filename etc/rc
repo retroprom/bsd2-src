@@ -1,6 +1,8 @@
 #
 # rc - system startup script
 #
+
+# System environment
 HOME=/; export HOME
 PATH=/bin:/sbin:/usr/sbin:/usr/ucb:/usr/bin; export PATH
 
