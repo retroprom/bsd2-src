@@ -27,6 +27,12 @@ if [ "${ramd_enable}" = yes ]; then
 	chmod "${ramd_mode}"                "${ramd_mount}"
 fi
 
+# Check for force flag
+if [ -f "/fsck.force" ]; then
+	fsck_always=yes
+	fsck_force=yes
+fi
+
 # Perform file system checks
 if [ "${bootmode}" = fastboot -a "${fsck_always}" != yes ]; then
 	echo 'Fast boot... skipping disk checks.'	>/dev/console 2>&1
@@ -66,6 +72,9 @@ else
 		;;
 	esac
 fi
+
+# Remove the force flag on success
+rm -f /fsck.force
 
 # Mount all filesystems marked for automatic mounting
 echo 'Mounting all file systems.'			>/dev/console 2>&1
