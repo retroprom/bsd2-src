@@ -28,7 +28,7 @@ SRCS = $(0FILES.c) $(1FILES.c) $(2FILES.c) \
 all:	structure beautify
 
 install: structure beautify struct
-	-mkdir ${DESTDIR}/usr/libexec/struct
+	-mkdir -p ${DESTDIR}/usr/libexec/struct
 	chmod 755 ${DESTDIR}/usr/libexec/struct
 	install -s -m 755 structure $(DESTDIR)/usr/libexec/struct/structure
 	install -s -m 755 beautify $(DESTDIR)/usr/libexec/struct/beautify
