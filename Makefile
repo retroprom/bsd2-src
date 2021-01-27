@@ -118,6 +118,15 @@ installsrc:
 		make ${MFLAGS} DESTDIR=${DESTDIR} install); \
 	done
 
+# distribution - Install a clean distribution
+#
+distribution:
+	./makedirs "${DESTDIR}"
+	-for i in ${LIBDIR} ${SRCDIR}; do \
+		(cd $$i; \
+		make ${MFLAGS} DESTDIR=${DESTDIR} install); \
+	done
+
 # tags - Update runtime tags file
 #
 tags:
