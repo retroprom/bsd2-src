@@ -26,7 +26,7 @@ code: code.o
 
 install: ${PROG} ${LIBS}
 	install -s -m 755 ${PROG} ${DESTDIR}/usr/bin/${PROG}
-	-mkdir ${DESTDIR}/var/db ${DESTDIR}/usr/libexec/find
+	-mkdir -p ${DESTDIR}/var/db ${DESTDIR}/usr/libexec/find
 	chmod 755 ${DESTDIR}/usr/libexec/find ${DESTDIR}/var/db
 	install -s -m 755 bigram ${DESTDIR}/usr/libexec/find/bigram
 	install -s -m 755 code ${DESTDIR}/usr/libexec/find/code
