@@ -48,6 +48,9 @@ if [ "${ramd_enable}" = yes ]; then
 	mkfs -s "${ramd_size}" -i 1024 -m 2 -n 1 /dev/ram
 	# Mount the file system
 	mount ${ramd_mount}
+	# Set owner and mode
+	chown "${ramd_owner}.${ramd_group}" "${ramd_mount}"
+	chmod "${ramd_mode}"                "${ramd_mount}"
 fi
 
 # Perform file system checks
@@ -93,13 +96,6 @@ fi
 # Mount all filesystems marked for automatic mounting
 echo 'Mounting all file systems.'			>/dev/console 2>&1
 mount -a						>/dev/console 2>&1
-
-# Finish initializing the ram disk
-if [ "${ramd_enable}" = yes ]; then
-	echo 'Preparing ram disk for use.'		>/dev/console 2>&1
-	chown "${ramd_owner}.${ramd_group}" "${ramd_mount}"
-	chmod "${ramd_mode}"                "${ramd_mount}"
-fi
 
 # Initialize disk quotas
 echo 'Checking quotas.'					>/dev/console 2>&1
