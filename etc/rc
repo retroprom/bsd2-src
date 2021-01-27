@@ -54,7 +54,7 @@ if [ "${ramd_enable}" = yes ]; then
 fi
 
 # Perform file system checks
-if [ "${bootmode}" = fastboot -a "${fsck_force}" != yes ]; then
+if [ "${bootmode}" = fastboot -a "${fsck_always}" != yes ]; then
 	echo 'Fast boot... skipping disk checks.'	>/dev/console 2>&1
 else
 	echo 'Checking file systems.'			>/dev/console 2>&1

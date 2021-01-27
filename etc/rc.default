@@ -14,6 +14,7 @@ ramd_group=wheel
 ramd_mode=1777
 
 # File systems
+fsck_always=yes
 fsck_force=no
 fsck_scratch=/tmp/_FSCK_SCRATCH
 
