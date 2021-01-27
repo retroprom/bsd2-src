@@ -33,7 +33,7 @@ fi
 echo '.'						>/dev/console 2>&1
 
 # Start network daemons
-if [ ${inet_enable} = yes ]; then
+if [ "${inet_enable}" = yes ]; then
 	echo -n 'Starting network daemons:'		>/dev/console 2>&1
 	if [ "${inetd_enable}" = yes ]; then
 		inetd ${inetd_flags}
