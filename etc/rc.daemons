@@ -4,6 +4,10 @@
 
 # Start standard daemons
 echo -n 'Starting standard daemons:'			>/dev/console 2>&1
+if [ "${update_enable}" = yes ]; then
+	update
+	echo -n ' update'				>/dev/console 2>&1
+fi
 if [ "${acct_enable}" = yes ]; then
 	accton -f ${acct_file} ${acct_flags}
 	echo -n ' acct'					>/dev/console 2>&1
@@ -11,10 +15,6 @@ fi
 if [ "${cron_enable}" = yes ]; then
 	cron
 	echo -n ' cron'					>/dev/console 2>&1
-fi
-if [ "${update_enable}" = yes ]; then
-	update
-	echo -n ' update'				>/dev/console 2>&1
 fi
 if [ "${lpd_enable}" = yes ]; then
 	rm -f /dev/printer
