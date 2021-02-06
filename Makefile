@@ -134,7 +134,7 @@ installsys:
 # distribution - Install a clean distribution
 #
 distribution:
-	./makedirs "${DESTDIR}"
+	./makedirs ${DESTDIR}
 	-for i in ${LIBDIR} ${SRCDIR}; do \
 		(cd $$i; \
 		make ${MFLAGS} DESTDIR=${DESTDIR} install); \
