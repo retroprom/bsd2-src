@@ -10,7 +10,7 @@ static char sccsid[] = "@(#)fseek.c	5.3 (Berkeley) 3/9/86";
 
 long lseek();
 
-fseek(iop, offset, ptrname)
+fseek(iop, offset, whence)
 	register FILE *iop;
 	long offset;
 {
@@ -19,11 +19,11 @@ fseek(iop, offset, ptrname)
 
 	iop->_flag &= ~_IOEOF;
 	if (iop->_flag&_IOREAD) {
-		if (ptrname<2 && iop->_base &&
+		if (whence<2 && iop->_base &&
 			!(iop->_flag&_IONBF)) {
 			c = iop->_cnt;
 			p = offset;
-			if (ptrname==0) {
+			if (whence==0) {
 				long curpos = lseek(fileno(iop), 0L, 1);
 				if (curpos == -1)
 					return (-1);
@@ -44,7 +44,7 @@ fseek(iop, offset, ptrname)
 			iop->_flag &= ~_IOREAD;
 			resync = 0;
 		}
-		p = lseek(fileno(iop), offset-resync, ptrname);
+		p = lseek(fileno(iop), offset-resync, whence);
 		iop->_cnt = 0;
 		if (resync && p != -1)
 			if (getc(iop) == EOF)
@@ -57,7 +57,7 @@ fseek(iop, offset, ptrname)
 			iop->_flag &= ~_IOWRT;
 			iop->_ptr = iop->_base;
 		}
-		return(lseek(fileno(iop), offset, ptrname) == -1 || p == EOF ?
+		return(lseek(fileno(iop), offset, whence) == -1 || p == EOF ?
 		    -1 : 0);
 	}
 	return(p==-1?-1:0);

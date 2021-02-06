@@ -43,6 +43,16 @@ extern	struct	_iobuf {
 #define	FILE	struct _iobuf
 #define	EOF	(-1)
 
+#ifndef SEEK_SET
+#define SEEK_SET    0   /* set file offset to offset */
+#endif
+#ifndef SEEK_CUR
+#define SEEK_CUR    1   /* set file offset to current plus offset */
+#endif
+#ifndef SEEK_END
+#define SEEK_END    2   /* set file offset to EOF plus offset */
+#endif
+
 #define	stdin	(&_iob[0])
 #define	stdout	(&_iob[1])
 #define	stderr	(&_iob[2])

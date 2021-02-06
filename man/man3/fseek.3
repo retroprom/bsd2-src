@@ -7,7 +7,7 @@ fseek, ftell, rewind \- reposition a stream
 .SH SYNOPSIS
 .B #include <stdio.h>
 .PP
-.B fseek(stream, offset, ptrname)
+.B fseek(stream, offset, whence)
 .br
 .SM
 .B FILE
@@ -32,8 +32,8 @@ The new position is at the signed distance
 bytes
 from the beginning, the current position, or the end of the file,
 according as 
-.I ptrname
-has the value 0, 1, or 2.
+.I whence
+has the value SEEK_SET(0), SEEK_CUR(1) or SEEK_END(2).
 .PP
 .I Fseek
 undoes any effects of
