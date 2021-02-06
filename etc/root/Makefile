@@ -14,6 +14,13 @@ GRP=wheel
 all install depend lint clean tags:
 
 distribution:
-	install -c -o ${OWN} -g ${GRP} -m 644 dot.cshrc ${DESTDIR}/.cshrc
-	install -c -o ${OWN} -g ${GRP} -m 644 dot.login ${DESTDIR}/.login
+# make root login silent
+	install -c -o ${OWN} -g ${GRP} -m 644 /dev/null   ${DESTDIR}/.hushlogin
+# shell configs
 	install -c -o ${OWN} -g ${GRP} -m 644 dot.profile ${DESTDIR}/.profile
+	install -c -o ${OWN} -g ${GRP} -m 644 dot.cshrc   ${DESTDIR}/.cshrc
+	install -c -o ${OWN} -g ${GRP} -m 644 dot.login   ${DESTDIR}/.login
+# other configs
+	install -c -o ${OWN} -g ${GRP} -m 644 dot.kermrc  ${DESTDIR}/.kermrc
+	install -c -o ${OWN} -g ${GRP} -m 644 dot.mailrc  ${DESTDIR}/.mailrc
+	install -c -o ${OWN} -g ${GRP} -m 644 dot.tiprc   ${DESTDIR}/.tiprc
