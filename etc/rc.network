@@ -2,7 +2,7 @@
 # rc.network - startup script for networking
 #
 
-# Always set the hostname
+# Set the hostname
 echo -n 'Setting hostname:'				>/dev/console 2>&1
 hostname ${hostname}					>/dev/console 2>&1
 hostid ${hostname}					>/dev/console 2>&1
