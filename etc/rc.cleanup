@@ -1,3 +1,10 @@
+#
+# rc.cleanup - System cleanup
+#
+
+# Check editor recovery
+echo 'Checking for editor recovery.'			>/dev/console 2>&1
+(cd /tmp; /usr/sbin/expreserve -a)
 
 # Clean tmp directory
 echo 'Cleaning temporary files.'			>/dev/console 2>&1
@@ -11,3 +18,10 @@ chmod 666 /dev/tty[pqrs]*
 echo 'Cleaning uucp locks.'				>/dev/console 2>&1
 rm -f /usr/spool/uucp/LCK.*
 rm -f /usr/spool/uucp/STST/*
+
+# Warn about ongoing vipw sessions
+if [ -s /etc/ptmp ]; then
+	echo ''						>/dev/console 2>&1
+	echo 'WARNING - PASSWD FILE NEEDS RECOVERY'	>/dev/console 2>&1
+	echo ''						>/dev/console 2>&1
+fi

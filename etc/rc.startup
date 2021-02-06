@@ -1,0 +1,22 @@
+#
+# rc.startup - System startup
+#
+
+# Check for core dumps if /etc/crash exists
+if [ -d /etc/crash ]; then
+	echo 'Checking for core dumps.'			>/dev/console 2>&1
+	savecore /etc/crash				>/dev/console 2>&1
+fi
+
+# Update the device database
+echo 'Updating device database.'			>/dev/console 2>&1
+dev_mkdb
+
+# Update the process database
+echo 'Updating process database.'			>/dev/console 2>&1
+ps -U							>/dev/console 2>&1
+
+# Initialize disk quotas
+echo 'Checking quotas.'					>/dev/console 2>&1
+quotacheck -a						>/dev/console 2>&1
+quotaon -a
