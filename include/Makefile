@@ -21,9 +21,9 @@ SUBDIRS=arpa pascal protocols OLD
 STD=	a.out.h ar.h assert.h ctype.h curses.h dbm.h fcntl.h \
 	fstab.h grp.h lastlog.h limits.h math.h memory.h mp.h mtab.h ndbm.h \
 	netdb.h nlist.h paths.h pcc.h pwd.h ranlib.h regexp.h resolv.h \
-	setjmp.h sgtty.h stab.h stdarg.h stdio.h stdlib.h string.h strings.h \
-	struct.h syscall.h sysexits.h time.h ttyent.h tzfile.h unistd.h \
-	utmp.h varargs.h vfont.h vmf.h
+	setjmp.h sgtty.h stab.h stdarg.h stddef.h stdio.h stdint.h stdlib.h \
+	string.h strings.h struct.h syscall.h sysexits.h time.h ttyent.h \
+	tzfile.h unistd.h utmp.h varargs.h vfont.h vmf.h
 LINKS=	errno.h signal.h syslog.h
 MACHINE=pdp
 MACHDEP=${MACHINE} pdpif pdpuba pdpmba vaxuba
