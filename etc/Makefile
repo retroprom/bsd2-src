@@ -25,30 +25,22 @@ FILES= aliases crontab disktab dtab fstab ftpusers gettytab group hosts \
 all install depend lint clean tags:
 
 distribution:
-	-@mkdir -p ${DESTDIR}/dev
-	@chmod 755 ${DESTDIR}/dev
-	-@mkdir -p ${DESTDIR}/etc
-	@chmod 755 ${DESTDIR}/etc
-	@chown ${OWN}.${GRP} ${DESTDIR}/dev ${DESTDIR}/etc
-	-@mkdir -p ${DESTDIR}/usr/spool/mqueue
-	@chmod 755 ${DESTDIR}/usr/spool/mqueue
-	@chown ${OWN}.${GRP} ${DESTDIR}/usr/spool/mqueue
-
+# Device creation scripts
+	install -c -o ${OWN} -g ${GRP} -m 555 MAKEDEV MAKEDEV.local \
+		${DESTDIR}/dev
+# Config files
 	install -c -o ${OWN} -g ${GRP} -m 644 ${FILES} ${DESTDIR}/etc
+# Security files
 	install -c -o root -g wheel -m  600 master.passwd ${DESTDIR}/etc
 	install -c -o ${OWN} -g ${GRP} -m 600 hosts.equiv ${DESTDIR}/etc
-	install -c -o ${OWN} -g ${GRP} -m 555 MAKEDEV.local MAKEDEV \
-		${DESTDIR}/dev
+# Operator files
 	install -c -o ${OWN} -g operator -m 664 /dev/null \
 		${DESTDIR}/etc/dumpdates
 	install -c -o ${OWN} -g operator -m 664 /dev/null \
 		${DESTDIR}/etc/sendmail.cw
 	install -c -o ${OWN} -g operator -m 664 /dev/null \
 		${DESTDIR}/etc/sendmail.fc
-	-@mkdir -p ${DESTDIR}/usr/adm ${DESTDIR}/var/run ${DESTDIR}/var/db
-	@chmod 655 ${DESTDIR}/usr/adm ${DESTDIR}/var/run ${DESTDIR}/var/db
-	@chown ${OWN}.${GRP} ${DESTDIR}/usr/adm ${DESTDIR}/var/run \
-		${DESTDIR}/var/db
+# Log and state files
 	install -c -o ${OWN} -g ${GRP} -m 644 /dev/null \
 	    ${DESTDIR}/usr/adm/messages
 	install -c -o ${OWN} -g ${GRP} -m 644 /dev/null \
@@ -77,5 +69,6 @@ distribution:
 	    ${DESTDIR}/usr/adm/savacct
 	install -c -o uucp -g daemon -m 600 /dev/null \
 	    ${DESTDIR}/usr/adm/aculog
+# Subdirectories
 	-for i in ${SUBDIR}; do \
 		(cd $$i; make DESTDIR=${DESTDIR} distribution); done
