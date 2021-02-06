@@ -235,7 +235,7 @@ main()
 	maxmem = MAXMEM;
 	printf("user mem  = %D\n", ctob((long)MAXMEM));
 #if NRAM > 0
-	printf("ram disk  = %D\n", NRAM * 2);
+	printf("ram disk  = %u\n", NRAM * 2);
 #endif
 	printf("\n");
 
