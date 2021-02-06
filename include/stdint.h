@@ -5,6 +5,9 @@
  *
  */
 
+#ifndef _STDINT_H
+#define _STDINT_H
+
 typedef signed char      int8_t;
 typedef signed int       int16_t;
 typedef signed long      int32_t;
@@ -63,4 +66,6 @@ int main(void) {
 	printf("UINT32_MAX = %lu\n", UL(UINT32_MAX));
 	return 0;
 }
+#endif
+
 #endif
