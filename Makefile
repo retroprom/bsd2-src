@@ -36,6 +36,7 @@ SRC_MFLAGS=
 #
 LIBDIR=include lib usr.lib
 SRCDIR=share bin sbin etc games libexec local new ucb usr.bin usr.sbin man
+SYSDIR=sys/GENERIC sys/pdpstand
 
 # all - Build everything without concern for bootstrap
 #
@@ -102,6 +103,10 @@ buildlib: FRC
 #
 buildsrc: ${SRCDIR} FRC
 
+# buildsrc - Kernel and loader build
+#
+buildsys: ${SYSDIR} FRC
+
 # install - Install the entire world
 #
 install:
@@ -117,6 +122,14 @@ installsrc:
 		(cd $$i; \
 		make ${MFLAGS} DESTDIR=${DESTDIR} install); \
 	done
+
+# installsys - Install kernel and loaders
+installsys:
+	@echo Installing GENERIC kernel
+	cd sys/GENERIC; make ${MFLAGS} DESTDIR=${DESTDIR} geninstall
+	@echo
+	@echo Installing standalone programs
+	cd sys/pdpstand; make ${MFLAGS} DESTDIR=${DESTDIR} install
 
 # distribution - Install a clean distribution
 #
@@ -139,11 +152,13 @@ tags:
 #
 clean:
 	rm -f a.out core *.s *.o
-	for i in ${LIBDIR} ${SRCDIR}; do (cd $$i; make -k ${MFLAGS} clean); done
+	for i in ${LIBDIR} ${SRCDIR} ${SYSDIR}; do \
+		(cd $$i; make -k ${MFLAGS} clean); \
+	done
 
 # Rule for building subdirectories
 #
-${LIBDIR} ${SRCDIR}: FRC
+${LIBDIR} ${SRCDIR} ${SYSDIR}: FRC
 	cd $@; make ${MFLAGS}
 
 # Dummy rule
