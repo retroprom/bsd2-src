@@ -57,6 +57,7 @@ else
 		;;
 	4)
 		reboot -n
+		exit 1
 		;;
 	8)
 		echo 'Automatic reboot failed... help!'	>/dev/console 2>&1
