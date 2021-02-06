@@ -1,0 +1,26 @@
+#
+# Public domain - 1997/1/10 - sms
+#
+#	@(#)Makefile	1.0 (2.11BSD) 1997/1/10
+#
+# DESTDIR is defined here to be something which does *NOT* exist - it must be
+#  specified on the command line when doing a "make DESTDIR=/mnt distribution".
+#  This is aimed at avoiding overwriting the system disk's /etc files.
+
+DESTDIR=/foobar
+OWN=root
+GRP=wheel
+
+all install depend lint clean tags:
+
+distribution:
+# shell configs
+	install -c -o ${OWN} -g ${GRP} -m 644 dot.profile \
+		${DESTDIR}/etc/skel/.profile
+	install -c -o ${OWN} -g ${GRP} -m 644 dot.cshrc \
+		${DESTDIR}/etc/skel/.cshrc
+	install -c -o ${OWN} -g ${GRP} -m 644 dot.login \
+		${DESTDIR}/etc/skel/.login
+# other configs
+	install -c -o ${OWN} -g ${GRP} -m 644 dot.mailrc \
+		${DESTDIR}/etc/skel/.mailrc
